@@ -1,0 +1,108 @@
+#mask {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background: rgba(0, 0, 0, .5);
+}
+h1 {
+  font-family: 'Microsoft JhengHei', cursive;
+  color: #f3ebe7;
+  font-size: 7vmin;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  text-align: center;
+  padding: 25px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgba(204, 204, 204, 0.349);
+}
+.ex5-box{
+  width: 150px;
+  height: 150px;
+  max-width:  100%;
+  background-color:  #eb9700;
+   display:  flex;
+   align-items: center;
+   justify-content: center;
+  }
+
+ul li a::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: -20px;
+  height: 100%;
+  width: 20px;
+  background: #a1a0a0;
+  transition: .5s;
+  transform: rotate(0deg) skewY(-45deg);
+}
+
+ul li a::after {
+  content: "";
+  position: absolute;
+  top: 80px;
+  left: -11px;
+  height: 20px;
+  background: #b1b1b1;
+  transition: .5s;
+  transform: rotate(0deg) skewX(-45deg);
+}
+
+ul li a:hover {
+  transform: perspective(1000px) rotate(-22deg) skew(25deg) translate(20px, -20px);
+  box-shadow: -50px 50px 50px rgb(0, 0, 0, 0.5);
+}
+
+ul li:hover:nth-child(1) a {
+  background: #b0bdd8;
+}
+
+ul li:hover:nth-child(1) a:before {
+  background: #8790a5;
+}
+
+ul li:hover:nth-child(1) a:after {
+  background: #b0bdd8;
+}
+
+ul li:hover:nth-child(5) a {
+  background: #b0bdd8;
+}
+
+ul li:hover:nth-child(5) a:before {
+  background: #8790a5;
+}
+
+ul li:hover:nth-child(5) a:after {
+  background: #b0bdd8;
+}
+
+a:link {
+  color: rgb(56, 53, 50);
+  text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+  color: rgba(29, 79, 94, 0.979);
+}
+
+/* selected link */
+a:active {
+  color: rgb(63, 48, 38);
+}
+
+.ex4-box{
+  width: 150px;
+  height: 150px;
+  max-width:  100%;
+   display:  flex;
+   justify-content: center;
+  }
