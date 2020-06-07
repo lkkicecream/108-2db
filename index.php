@@ -61,7 +61,7 @@
     }
 
     body {
-      background-color: #d9b68b;
+      background-color: #DEFFFF;
     }
 
     .card-new .card {
