@@ -1,158 +1,108 @@
 <!DOCTYPE html>
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="https://kit.fontawesome.com/66a625edde.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <title>首頁</title>
-  <style type="text/css">
-    #sitebody {
-      width: device-width;
-      margin: 0 auto;
-      font-size: 13 px;
-    }
-
-    #header {
-      background-color: #555150;
-      height: 80px;
-      text-align: center;
-      line-height: 2.5;
-    }
-
-    .Logo .Logo1 {
-      max-height: 80px;
-      max-width: auto;
-      display: inline;
-      position: absolute;
-      left: 80px;
-    }
-
-    #footer {
-      clear: both;
-      background-color: #466673;
-      text-align: center;
-      line-height: 80px;
-    }
-
-    .bg-green {
-      background-color: #466673;
-      box-shadow: 0 3px 8px 0 #000;
-    }
-
-    .Home {                   /* navbar距離 */
-      width: 150px;
-    }
-
-    .carousel .carousel-item {
-      height: 400px;
-    }
-
-    .carousel .carousel-item img {
-      align-items: center;
-      max-width: 800px;
-      margin: auto;
-    }
-
-    #carouselbody {                 /* 主要頁面 */
-      margin-top: 30px;
-      background-color: #466673;
-    }
-
+  <title>登入頁面</title>
+  <link rel="stylesheet" type="text/css" href="login.css" />
+  <script type="text/javascript" src="login.js"></script>
+  <style>
     body {
-      background-color: white;
+      background-image: url("水彩背景.jpg");
+      background-size: 100%;
+      background-repeat: no-repeat;
     }
 
-    .card-new .card {
-      background-color: brown;
-    }
-
-    #news {
-      margin: auto;
-      width: 80vw;
-      margin-top: 10px;
-      background-color: rgb(185, 198, 187);
+    #login_frame {
+      width: 30em;
+      height: 30em;
+      padding: 13px;
+      position: absolute;
+      left: 55%;
+      top: 40%;
+      margin-left: -300px;
+      margin-top: -200px;
+      background-color: rgba(240, 255, 255, 0.5);
       border-radius: 10px;
-      border: 10px solid;
-      border-color: #466673;
-    }
-
-    .list-group-item {
-      color: white;
-      background-color: #8c634a;
-    }
-
-    .list-group-item.active {
-      background-color: #d9b68b;
-    }
-
-    .newtext {
-      padding: 20px;
-    }
-
-    .Icon {
-      width: 50px;
-      height: 50px;
-    }
-
-    #newsbut {
-      margin-left: 13%;
-      margin-top: 2%;
-    }
-
-    .newsbutback {
-      background-color: #466673;
-    }
-
-    #MainBody {
-      margin-bottom: 100px;
-    }
-
-    .ntitle a {
-      font-weight: bold;
-      font-size: medium;
       text-align: center;
     }
-    .main{
-				margin: 0 auto;
-				padding: 10px;
-				width: 350px;
-				height: 300px;
-				background: white;
-			}
-			.leftbar{
-				width: 30%;
-				padding-bottom: 10px;
-				display: inline-block;
-				text-align: right;
-			}
-			.bottom{
-				padding-bottom: 15px;
-			}
+
+    form p>* {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    #image_logo {
+      margin-top: 3em;
+    }
+
+    .label_input {
+      font-size: 14px;
+      font-family: 宋體;
+      width: 5.5em;
+      height: 28px;
+      line-height: 28px;
+      text-align: center;
+      color: white;
+      background-color: #3CD8FF;
+      border-top-left-radius: 1em;
+      border-bottom-left-radius: 1em;
+    }
+
+    .text_field {
+      width: 15em;
+      height: 28px;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      border: 0;
+    }
+
+    #btn_login {
+      font-size: 14px;
+      font-family: 宋體;
+      width: 5em;
+      height: 28px;
+      line-height: 28px;
+      text-align: center;
+      color: white;
+      background-color: #3BD9FF;
+      border-radius: 6px;
+      border: 0;
+      margin-left: 0px;
+    }
+
+    #forget_pwd {
+      font-size: 12px;
+      color: white;
+      text-decoration: none;
+      position: relative;
+      top: 5px;
+      margin-left: 250px;
+    }
+
+    #forget_pwd:hover {
+      color: blue;
+      text-decoration: underline;
+    }
+
+    #login_control {
+      padding: 0 28px;
+    }
   </style>
 </head>
+
 <body>
-		
-		<form action="login.php" method="post">
-			
-			<div id="main" class="main">
-				<h3>
-					請輸入使用者名稱
-				</h3>
-				<div>
-					<label><div class="news">使用者名稱：</div><input type="text" name="userName" /></label>
-					<label><div class="news">密碼：</div><input type="text" name="userPassword" /></label>
-				</div>
-				<div class="bottom">
-					<div class="news"></div><input type="radio" name="remmber"  />記住我一週
-				</div>
-				<div class="bottom">
-					<div class="leftbar"></div><input type="submit" name="submit" value="登入" />
-				</div>
-				
-			</div>
-			
-		</form>	
-  </body>
-  </html>
+  <div id="login_frame">
+    <p id="image_logo"><img src="旅遊管理企業.png" style="width: 20em; height: 15em" ></p>
+    <form method="post" action="login.php">
+      <p><label class="label_input">使用者名稱</label><input type="text" id="username" name="userName" class="text_field" /></p>
+      <p><label class="label_input">密碼</label><input type="password" id="password" name="userPassword" class="text_field" /></p>
+      <div id="login_control">
+        <input type="submit" id="btn_login" value="登入"  />
+        <a id="forget_pwd" href="forget_pwd.html">忘記密碼？</a>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>
