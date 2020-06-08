@@ -1,218 +1,242 @@
+<?php
+require_once("connect.php");
+$con = create_connection();
+//組合查詢字串
+$sql = "SELECT imagesights.filepic , sights.sname, sights.sstars, sights.slocation 
+            FROM imagesights, sights 
+            WHERE imagesights.filename = sights.sname and sights.sstars >= 4";
+//
+$cur = execute_sql($con, "test", $sql);
+//取出資料
+$i = 0;
+while ($data = mysqli_fetch_array($cur)) {
+    $img[$i] = "data:image/jpeg;base64," . $data[0];
+    $name[$i] = $data[1];
+    $stars[$i] = $data[2];
+    $location[$i] = $data[3];
+    $i++;
+}
+$i = 0;
+?>
 <!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="https://kit.fontawesome.com/66a625edde.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <title>首頁</title>
-  <style type="text/css">
-    #sitebody {
-      width: device-width;
-      margin: 0 auto;
-      font-size: 13 px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://kit.fontawesome.com/66a625edde.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>首頁</title>
+    <style>
+        body {
+            background-color: #DEFFFF;
+        }
 
-    #header {
-      background-color: #555150;
-      height: 80px;
-      text-align: center;
-      line-height: 2.5;
-    }
+        .Icon {
+            width: 50px;
+            height: 50px;
+        }
 
-    .Logo .Logo1 {
-      max-height: 80px;
-      max-width: auto;
-      display: inline;
-      position: absolute;
-      left: 80px;
-    }
+        .Home {
+            /* navbar距離 */
+            width: 150px;
+        }
 
-    #footer {
-      clear: both;
-      background-color: #466673;
-      text-align: center;
-      line-height: 80px;
-    }
+        .bg-green {
+            background-color: #466673;
+            box-shadow: 0 3px 8px 0 #000;
+        }
 
-    .bg-green {
-      background-color: #466673;
-      box-shadow: 0 3px 8px 0 #000;
-    }
+        .text {
+            width: 100%;
+        }
 
-    .Home {                   /* navbar距離 */
-      width: 150px;
-    }
+        .text select {
+            width: 500px;
+            height: 50px;
+            line-height: 55px;
+            font-size: 1.0rem;
+            border: 1px solid #000;
+            color: #5f5f5f;
+        }
 
-    .carousel .carousel-item {
-      height: 400px;
-    }
+        .form-search {
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
 
-    .carousel .carousel-item img {
-      align-items: center;
-      max-width: 800px;
-      margin: auto;
-    }
+        .input-search {
+            height: 50px;
+        }
 
-    #carouselbody {                 /* 主要頁面 */
-      margin-top: 30px;
-      background-color: #466673;
-    }
+        #carouselbody {
+            /* 主要頁面 */
+            margin-top: 30px;
+            background-color: #466673;
+        }
 
-    body {
-      background-color: #DEFFFF;
-    }
+        .carousel .carousel-item {
+            height: 400px;
+        }
 
-    .card-new .card {
-      background-color: brown;
-    }
-
-    #news {
-      margin: auto;
-      width: 80vw;
-      margin-top: 10px;
-      background-color: rgb(185, 198, 187);
-      border-radius: 10px;
-      border: 10px solid;
-      border-color: #466673;
-    }
-
-    .list-group-item {
-      color: white;
-      background-color: #8c634a;
-    }
-
-    .list-group-item.active {
-      background-color: #d9b68b;
-    }
-
-    .newtext {
-      padding: 20px;
-    }
-
-    .Icon {
-      width: 50px;
-      height: 50px;
-    }
-
-    #newsbut {
-      margin-left: 13%;
-      margin-top: 2%;
-    }
-
-    .newsbutback {
-      background-color: #466673;
-    }
-
-    #MainBody {
-      margin-bottom: 100px;
-    }
-
-    .ntitle a {
-      font-weight: bold;
-      font-size: medium;
-      text-align: center;
-    }
-  </style>
+        .carousel .carousel-item img {
+            align-items: center;
+            max-width: 800px;
+            margin: auto;
+        }
+    </style>
 </head>
 
 <body>
     <div id="navbar">
         <nav class="navbar navbar-expand-lg navbar-dark fixed-center bg-green">
-        <a class="navbar-brand Home titleb " href="#" style="font-size: 25px;"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse " id="navbarCollapse">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active Home">
-            <a class="nav-link titleb" href="home.php"" style="font-size: 17px;"><i class="fas fa-home"></i>
-              首頁 <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item active Home">
-            <a class="nav-link titleb" href="signup.php" style="font-size: 17px;"><i class="fas fa-file-alt"></i>
-                登入 <span class="sr-only">(current)</span></a>
-          </li>
-        </ul>
-        </div>
+            <a class="navbar-brand Home titleb " href="#" style="font-size: 25px;"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active Home">
+                        <a class="nav-link titleb" href="home.php" style=" font-size: 17px;"><i class="fas fa-home"></i>
+                            首頁 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active Home">
+                        <a class="nav-link titleb" href="signup.php" style="font-size: 17px;"><i class="fas fa-file-alt"></i>
+                            登入 <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
         </nav>
     </div>
     <div align="center">
-        <tr>
-            <form class="form-inline my-2 my-lg-0" style="margin-left: 600px;">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </tr>
-        <table width="50%" bgcolor="white" style="border-collapse: separate; border-spacing: 0 10px;" class="col-xs-6 col-md-6 table-responsive">
-        <br><br>
-        <tbody>
-        <tr>
-            <td width="98"><div align="center">地區</div></td>
-            <td width="98"><input onclick="area1_g.check(this);" type="checkbox" name="area1_g_all" id="area1_g_all">中區</td>
-            <td width="98"><input onclick="area1_g.check(this);" type="checkbox" name="area2_g_all" id="area2_g_all">東區</td>
-            <td width="98"><input onclick="area1_g.check(this);" type="checkbox" name="area3_g_all" id="area3_g_all">西區</td>
-            <td width="98"><input onclick="area1_g.check(this);" type="checkbox" name="area4_g_all" id="area4_g_all">南區</td>
-            <td width="98"><input onclick="area1_g.check(this);" type="checkbox" name="area5_g_all" id="area5_g_all">北區</td>
-        </tr>
-        <tr>
-            <td width="98"><div align="center"></div></td>
-            <td width="98"><input onclick="area1_g.check(this);" type="checkbox" name="area6_g_all" id="area6_g_all">西屯區</td>
-            <td width="98"><input onclick="area1_g.check(this);" type="checkbox" name="area7_g_all" id="area7_g_all">南屯區</td>
-            <td width="98"><input onclick="area1_g.check(this);" type="checkbox" name="area8_g_all" id="area8_g_all">北屯區</td>
-            <td width="98"><input onclick="area1_g.check(this);" type="checkbox" name="area9_g_all" id="area9_g_all">豐原區</td>
-            <td width="98"><input onclick="area1_g.check(this);" type="checkbox" name="area10_g_all" id="area10_g_all">大里區</td>
-            <td width="98"><input onclick="area1_g.check(this);" type="checkbox" name="area11_g_all" id="area11_g_all">太平區</td>
-        </tr>
-        <tr>
-            <td width="98"><div align="center"></div></td>
-            <td width="123"><input onclick="area1_g.check(this);" type="checkbox" name="area12_g_all" id="area12_g_all">清水區</td>
-            <td width="123"><input onclick="area1_g.check(this);" type="checkbox" name="area13_g_all" id="area13_g_all">沙鹿區</td>
-            <td width="123"><input onclick="area1_g.check(this);" type="checkbox" name="area14_g_all" id="area14_g_all">大甲區</td>
-            <td width="123"><input onclick="area1_g.check(this);" type="checkbox" name="area15_g_all" id="area15_g_all">東勢區</td>
-            <td width="130"><input onclick="area1_g.check(this);" type="checkbox" name="area16_g_all" id="area16_g_all">梧棲區</td>
-            <td width="140"><input onclick="area1_g.check(this);" type="checkbox" name="area17_g_all" id="area17_g_all">烏日區</td>
-        </tr>
-        <tr>
-            <td width="98"><div align="center"></div></td>
-            <td width="123"><input onclick="area1_g.check(this);" type="checkbox" name="area18_g_all" id="area18_g_all">神岡區</td>
-            <td width="123"><input onclick="area1_g.check(this);" type="checkbox" name="area19_g_all" id="area19_g_all">大肚區</td>
-            <td width="123"><input onclick="area1_g.check(this);" type="checkbox" name="area20_g_all" id="area20_g_all">大雅區</td>
-            <td width="123"><input onclick="area1_g.check(this);" type="checkbox" name="area21_g_all" id="area21_g_all">后里區</td>
-            <td width="130"><input onclick="area1_g.check(this);" type="checkbox" name="area22_g_all" id="area22_g_all">霧峰區</td>
-            <td width="140"><input onclick="area1_g.check(this);" type="checkbox" name="area23_g_all" id="area23_g_all">潭子區</td>
-        </tr>
-        <tr>
-            <td width="98"><div align="center"></div></td>
-            <td width="123"><input onclick="area1_g.check(this);" type="checkbox" name="area24_g_all" id="area24_g_all">龍井區</td>
-            <td width="123"><input onclick="area1_g.check(this);" type="checkbox" name="area25_g_all" id="area25_g_all">外埔區</td>
-            <td width="123"><input onclick="area1_g.check(this);" type="checkbox" name="area26_g_all" id="area26_g_all">和平區</td>
-            <td width="123"><input onclick="area1_g.check(this);" type="checkbox" name="area27_g_all" id="area27_g_all">石岡區</td>
-            <td width="130"><input onclick="area1_g.check(this);" type="checkbox" name="area28_g_all" id="area28_g_all">大安區</td>
-            <td width="140"><input onclick="area1_g.check(this);" type="checkbox" name="area29_g_all" id="area29_g_all">新社區</td>
+        <table style="margin-top: 4em">
+            <tr>
+                <form class="form-inline my-2 my-lg-0 form-search" align="center">
+                    <th>
+                        <input class="form-control mr-sm-2 input-search" align="left" type="search" placeholder="Search" aria-label="Search" style="width: 400px">
+                    </th>
+                    <td>
+                        <div class="text" align="left">
+                            <select class="text-select">
+                                <option>不選擇</option>
+                                <option>中區</option>
+                                <option>東區</option>
+                                <option>西區</option>
+                                <option>南區</option>
+                                <option>北區</option>
+                                <option>西屯區</option>
+                                <option>南屯區</option>
+                                <option>北屯區</option>
+                                <option>豐原區</option>
+                                <option>大里區</option>
+                                <option>太平區</option>
+                                <option>清水區</option>
+                                <option>沙鹿區</option>
+                                <option>大甲區</option>
+                                <option>東勢區</option>
+                                <option>梧棲區</option>
+                                <option>烏日區</option>
+                                <option>神岡區</option>
+                                <option>大肚區</option>
+                                <option>大雅區</option>
+                                <option>后里區</option>
+                                <option>霧峰區</option>
+                                <option>潭子區</option>
+                                <option>龍井區</option>
+                                <option>外埔區</option>
+                                <option>和平區</option>
+                                <option>石岡區</option>
+                                <option>大安區</option>
+                                <option>新社區</option>
+                            </select>
+                        </div>
+                    </td>
             </tr>
             <tr>
-              <td align="center">
-                <input name="submit" type="submit">
-              </td>
-              <td>
-                <input name="delete" type="reset">
-              </td>
+                <th>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜尋</button>
+                </th>
+                <td>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="reset">重設</button>
+                </td>
             </tr>
-          </tbody>
+            </form>
+
         </table>
     </div>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+    <section id="carouselbody">
+        <div class="bd-example">
+            <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <a href="https://travel.taichung.gov.tw/zh-tw/Event/ActivityDetail/5205/" class="link" title="2019谷關七雄登山趣" target="_blank">
+                            <img src="https://travel.taichung.gov.tw/Utility/DisplayImage?id=35168&prefix=original_" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="http://taichung.csii.com.tw/" class="link" title="臺中市即時景點或鄰近重要道路實況影像" target="_blank">
+                            <img src="https://travel.taichung.gov.tw/Utility/DisplayImage?id=34661&amp;prefix=original_" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="https://tourism.taichung.gov.tw/" class="link" title="108年工作成果" target="_blank">
+                            <img src="https://travel.taichung.gov.tw/Utility/DisplayImage?id=32766&amp;prefix=original_" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon Icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon Icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        <div id="newstitle">
+        </div>
+    </section>
+    <table style="border-bottom:1px solid #ddd ; padding-bottom:10px ; margin-left: 10% ; margin-right: 10% ; margin-top: 2%;" cellpadding="3" ;border='10' RULES=ROWS>
+        <tr>
+            <th></th>
+            <th>建議搜尋</th>
+            <th>星星評分</th>
+            <th align-text:center>地址</th>
+        </tr>
+        <?php
+        for ($i = 0; $i < 5; $i++) {
+            echo "
+                <tr >
+                    <td bgcolor=#f0efd3>
+                    <img src=\"$img[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
+                    </td>
+                    <td width=\"40%\" bgcolor=#f0efd3>$name[$i]</td>
+                    <td width=\"10%\" bgcolor=#f0efd3>$stars[$i]</td>
+                    <td width=\"50%\" bgcolor=#f0efd3>$location[$i]</td>
+                </tr>
+                ";
+        }
+        ?>
+    </table>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
 </html>

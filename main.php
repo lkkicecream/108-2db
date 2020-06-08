@@ -1,22 +1,22 @@
 <?php
-    require_once("connect.php");
-    $con = create_connection();
-    //組合查詢字串
-    $sql = "SELECT imagesights.filepic , sights.sname, sights.sstars, sights.slocation 
+require_once("connect.php");
+$con = create_connection();
+//組合查詢字串
+$sql = "SELECT imagesights.filepic , sights.sname, sights.sstars, sights.slocation 
             FROM imagesights, sights 
             WHERE imagesights.filename = sights.sname and sights.sstars >= 4";
-    //
-    $cur = execute_sql($con,"test", $sql);
-    //取出資料
-    $i = 0;
-    while($data = mysqli_fetch_array( $cur )) {
-        $img[$i] = "data:image/jpeg;base64,".$data[0];
-        $name[$i] = $data[1];
-        $stars[$i] = $data[2];
-        $location[$i] = $data[3];
-        $i++;
-    }
-    $i = 0;
+//
+$cur = execute_sql($con, "test", $sql);
+//取出資料
+$i = 0;
+while ($data = mysqli_fetch_array($cur)) {
+    $img[$i] = "data:image/jpeg;base64," . $data[0];
+    $name[$i] = $data[1];
+    $stars[$i] = $data[2];
+    $location[$i] = $data[3];
+    $i++;
+}
+$i = 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,6 +71,22 @@
 
         .input-search {
             height: 50px;
+        }
+
+        #carouselbody {
+            /* 主要頁面 */
+            margin-top: 30px;
+            background-color: #466673;
+        }
+
+        .carousel .carousel-item {
+            height: 400px;
+        }
+
+        .carousel .carousel-item img {
+            align-items: center;
+            max-width: 800px;
+            margin: auto;
         }
     </style>
 </head>
@@ -152,16 +168,60 @@
 
         </table>
     </div>
-    <table style="border-bottom:1px solid #ddd ; padding-bottom:10px ; margin-left: 10% ; margin-right: 10% ; margin-top: 2%;"cellpadding="3";border='10'RULES=ROWS >
+    <section id="carouselbody">
+        <div class="bd-example">
+            <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <a href="https://travel.taichung.gov.tw/zh-tw/Event/ActivityDetail/5205/" class="link" title="2019谷關七雄登山趣" target="_blank">
+                            <img src="https://travel.taichung.gov.tw/Utility/DisplayImage?id=35168&prefix=original_" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="http://taichung.csii.com.tw/" class="link" title="臺中市即時景點或鄰近重要道路實況影像" target="_blank">
+                            <img src="https://travel.taichung.gov.tw/Utility/DisplayImage?id=34661&amp;prefix=original_" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="https://tourism.taichung.gov.tw/" class="link" title="108年工作成果" target="_blank">
+                            <img src="https://travel.taichung.gov.tw/Utility/DisplayImage?id=32766&amp;prefix=original_" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon Icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon Icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        <div id="newstitle">
+        </div>
+    </section>
+    <table style="border-bottom:1px solid #ddd ; padding-bottom:10px ; margin-left: 10% ; margin-right: 10% ; margin-top: 2%;" cellpadding="3" ;border='10' RULES=ROWS>
         <tr>
             <th></th>
-            <th>景點名稱</th>
+            <th>建議搜尋</th>
             <th>星星評分</th>
             <th align-text:center>地址</th>
         </tr>
-        <?php 
-            for($i = 0; $i < 10; $i ++) {
-                echo "
+        <?php
+        for ($i = 0; $i < 5; $i++) {
+            echo "
                 <tr >
                     <td bgcolor=#f0efd3>
                     <img src=\"$img[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
@@ -171,11 +231,12 @@
                     <td width=\"50%\" bgcolor=#f0efd3>$location[$i]</td>
                 </tr>
                 ";
-            }
+        }
         ?>
     </table>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
+
 </html>
