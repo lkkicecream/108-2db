@@ -30,6 +30,6 @@
 <body background="home.jpg">
     
     <h1>景點與飯店資訊管理系統<br>C10</h1>
-    <h1><a href="index.php"><i aria-hidden="true"></i>進入</a></h1>
+    <h1><a href="main.php"><i aria-hidden="true"></i>進入</a></h1>
 </body>
 </html>

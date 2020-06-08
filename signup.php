@@ -69,6 +69,7 @@
       border-radius: 6px;
       border: 0;
       margin-left: 0px;
+      margin-top: 2em;
     }
 
     #forget_pwd {
@@ -89,16 +90,29 @@
       padding: 0 28px;
     }
   </style>
+  
+  <script>
+    function login() {
+      var username = document.getElementById("username");
+      var pass = document.getElementById("password");
+
+      if (username.value == "") {
+        alert("請輸入使用者名稱");
+      } else if (pass.value == "") {
+        alert("請輸入密碼");
+      } 
+    }
+  </script>
 </head>
 
 <body>
   <div id="login_frame">
-    <p id="image_logo"><img src="旅遊管理企業.png" style="width: 20em; height: 15em" ></p>
+    <p id="image_logo"><img src="旅遊管理企業.png" style="width: 20em; height: 15em"></p>
     <form method="post" action="login.php">
       <p><label class="label_input">使用者名稱</label><input type="text" id="username" name="userName" class="text_field" /></p>
       <p><label class="label_input">密碼</label><input type="password" id="password" name="userPassword" class="text_field" /></p>
       <div id="login_control">
-        <input type="submit" id="btn_login" value="登入"  />
+        <input type="submit" id="btn_login" value="登入" onclick="login();" />
         <a id="forget_pwd" href="forget_pwd.html">忘記密碼？</a>
       </div>
     </form>

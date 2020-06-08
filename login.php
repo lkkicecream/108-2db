@@ -4,15 +4,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>登入驗證</title>
-		<style type="text/css">
-			.main{
-				margin: 0 auto;
-				width: 350px;
-				height: 100px;
-				background: cornflowerblue;
-				padding: 20px;
-			}
-		</style>
+		
 	</head>
 	<body>
 		<div class="main">
@@ -22,7 +14,7 @@
 				$password=$_POST['userPassword'];
 
                 if($name==null||$password==null){
-					header("location:登入.html");//直接開啟該php檔案，跳轉到登入介面
+					header("location:signup.php");//直接開啟該php檔案，跳轉到登入介面
 				}
 				
 				
@@ -37,11 +29,13 @@
                     
 					$num_users=$result->num_rows;//在資料庫中搜索到符合的使用者
 					if($num_users!=0){//搜尋到該使用者
-						echo "<h3>歡迎您&nbsp{$name}</h3>";
-						
+						header("location: main.php");
 					}
 					else{
-						echo "使用者名稱或密碼錯誤";
+						$url = "signup.php" ; 
+						echo "<script language = 'javascript'  type = 'text/javascript'> alert('請輸入正確的使用者名稱和密碼！');";
+						echo " window.location.href = '$url';";
+						echo "</script>";
 					}
 			?>
 		</div>
