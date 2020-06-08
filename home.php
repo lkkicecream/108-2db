@@ -1,3 +1,6 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,11 +28,17 @@
         background-attachment: fixed;
         background-size: cover;
         }
+        h1{
+            background:"black";
+        }
     </style>
 </head>
 <body background="home.jpg">
     
-    <h1>景點與飯店資訊管理系統<br>C10</h1>
-    <h1><a href="main.php"><i aria-hidden="true"></i>進入</a></h1>
+    <div style="text-align:center;"><font color="white"><h1>景點與飯店資訊管理系統<br>C10</font></h1></div>
+    <ul>
+        <li><a href="hotel_search.php">找飯店</i></a></li>
+        <li><a href="sights_search.php">找景點</i></a></li>
+    </ul>
 </body>
 </html>
