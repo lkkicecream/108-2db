@@ -132,7 +132,7 @@ $i = 0;
               <span class="header-menu-ch-title">飯店</span>
             </a>
           </li>
-          <li class="header-menu-list" style="top: 10px; margin-right: 150px;">
+          <li class="header-menu-list" style="top: 10px; margin-right: 100px;">
             <a href="sights_search.php">
               <span class="header-menu-en-title">Sight</span>
               <span class="header-menu-ch-title">景點</span>

@@ -27,10 +27,12 @@
                     
 					$num_users=$result->num_rows;//在資料庫中搜索到符合的使用者
 					if($num_users!=0){//搜尋到該使用者
+						$account = mysqli_fetch_array($result);
+						$_COOKIE['account'] = $account[0];
 						header("location: hotel_search.php");
 					}
 					else{
-						$url = "signup_hotel.php" ; 
+						$url = "signup_hotel.php" ;
 						echo "<script language = 'javascript'  type = 'text/javascript'> alert('請輸入正確的使用者名稱和密碼！');";
 						echo " window.location.href = '$url';";
 						echo "</script>";
