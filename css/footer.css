@@ -1,0 +1,84 @@
+footer{
+	width: 100%;
+	background-color: #000000;
+	position: relative;
+    z-index: 99;
+}
+.footer-box{
+	width: 1200px;
+	max-width: 100%;
+	display: block;
+	margin: 0 auto;
+	padding: 5px 0;
+}
+.footer-box-title{
+    font-size: 16px;
+    padding-bottom: 20px;
+    letter-spacing: 2px;
+	display: block;
+	font-family: "Microsoft JhengHei";
+}
+
+.footer-list-block{
+	/* display: block; */
+	font-size: 14px;
+	/* float: left; */
+	font-family: "Microsoft JhengHei";
+}
+.footer-list{
+	padding-bottom: 20px;
+	letter-spacing: 2px;
+}
+
+.footer-list-title,
+.footer-list-description{
+	display: inline-block;
+}
+.footer-list-block address{
+    font-style: normal;
+    font-weight: 100;
+}
+.footer-list-fax:after{
+    content: '/';
+    display: inline-block;
+    font-size: 14px;
+    padding-left: 5px;
+}
+.footer-web{
+	display: block;
+	float: right;
+}
+.footer-web-icon-box{
+	text-align: center;
+}
+.footer-web-icon{
+	width: 100%;
+	text-align: center;
+    padding-top: 10px;
+    padding-bottom: 44px;
+}
+.footer-web-icon a{
+	width: 35px;
+	display: inline-block;
+	margin-right: 10px;
+}
+.footer-web-icon a:last-child{
+	margin-right: 0;
+	margin-left: 10px;
+}
+.footer-web-icon a img{
+	vertical-align: middle;
+}
+.footer-copyright{
+	width: 100%;
+	font-size: 12px;
+	text-align: center;
+	letter-spacing: 2px;
+	font-family: "Microsoft JhengHei";
+    font-weight: 100;
+}
+.footer-fixed-message{
+	position: fixed;
+	bottom: -9px;
+	right: 0;
+}

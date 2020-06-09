@@ -1,0 +1,95 @@
+.works-animation{
+	opacity: 0;
+	animation: fade 1.5s linear .0s 1 forwards;
+}
+
+.index-banner-arrow img{
+    animation: arrow 4s ease-in 0s infinite;
+}
+.index-banner-svg-bg{
+	opacity:0;
+	position:relative;
+	animation:fade 1s ease-out 3s 1 forwards;
+}
+.index-contact-information .index-contact-information-block,
+.index-contact-title{
+	opacity:0;
+}
+
+.index-contact-title.animated{
+	opacity: 1;
+	transition: all 2s ease;
+}
+
+.index-works-img-box.animated .index-works-img.animated{
+	transition:all .3s linear;
+}
+
+.index-works-img-box.animated .index-works-img >img{
+	box-shadow: rgba(0,0,0,0.8)5px 5px 10px;
+}
+
+
+.index-contact-list-block input,
+.index-contact-list-block textarea{
+	transition: all .8s linear;
+
+}
+
+.index-contact-list-block.animated,
+.index-contact-list-block:nth-child(even).animated,
+.index-contact-list-block.button.animated{
+
+	transform: translate(0,0);
+	opacity: 1;
+}
+.index-contact-list-block.animated input,
+.index-contact-list-block.animated textarea,
+.index-contact-list-block.button.animated{
+	transition-delay: .7s;
+	box-shadow:rgba(0, 0, 0, 0.6) 3px 3px 6px;
+}
+
+.index-contact-list-block.animated .index-contact-line-top{
+	transform: scale(1,1);
+	transition-delay: 0.2s;
+}
+.index-contact-list-block.animated .index-contact-line-right{
+	transform: scale(1,1);
+	transition-delay: 0;
+}
+.index-contact-list-block.animated .index-contact-line-bottom{
+	transform: scale(1,1);
+	transition-delay: .2s;
+}
+.index-contact-list-block.animated .index-contact-line-left{
+	transform: scale(1,1);
+	transition-delay: 0;
+}
+
+.index-contact-list-block{
+	opacity: 0.5;
+	transition: all .5s ease;
+}
+.index-contact-list-block.button{
+	opacity: 0.5;
+	transition: all .5s linear;
+}
+
+.index-contact-information .index-contact-information-block{
+	opacity:0.5;
+	transform:translateY(20px) scale(1);
+	transition: all 1s linear;
+
+}
+.index-contact-information.animated .index-contact-information-block{
+	opacity: 1;
+	transform:translateY(0px) scale(1);
+}
+
+.mask-link-border1{
+    animation: mask-rotate 10s linear 0s infinite normal;
+}
+.mask-link-border2{
+    animation: mask-rotate 10s linear 0s infinite reverse;
+}
