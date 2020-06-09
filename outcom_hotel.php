@@ -2,21 +2,21 @@
 require_once("connect.php");
 $con = create_connection();
 //組合查詢字串
+$word = $_POST['keyword'];
 $sql = "SELECT imagehotels.filepic , hotel.hname, hotel.hstars, hotel.hlocation 
-            FROM imagehotels, hotel 
-            WHERE imagehotels.filename = hotel.hname and hotel.hstars >= 4";
+        FROM imagehotels, hotel 
+        WHERE imagehotels.filename = hotel.hname and hotel.hname LIKE '%" . $word . "%'";
 //
 $cur = execute_sql($con, "test", $sql);
 //取出資料
-$i = 0;
+$cnt = 0;
 while ($data = mysqli_fetch_array($cur)) {
-  $img[$i] = "data:image/jpeg;base64," . $data[0];
-  $name[$i] = $data[1];
-  $stars[$i] = $data[2];
-  $location[$i] = $data[3];
-  $i++;
+  $img[$cnt] = "data:image/jpeg;base64," . $data[0];
+  $name[$cnt] = $data[1];
+  $stars[$cnt] = $data[2];
+  $location[$cnt] = $data[3];
+  $cnt++;
 }
-$i = 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -117,7 +117,7 @@ $i = 0;
       <nav class="header-menu-box-list">
         <ul class="header-menu-class">
           <li class="header-menu-list" style="top: 10px;">
-            <a href="/#index-contact" onclick="menu_scrollTo(2);return false;">
+            <a href="/#index-contact">
               <span class="header-menu-en-title">Contact</span>
               <span class="header-menu-ch-title">聯絡我們</span>
             </a>
@@ -210,61 +210,7 @@ $i = 0;
     <!-- 展開視窗 END -->
 
   </header>
-  <div align="center">
-    <table style="margin-top: 4em">
-      <tr>
-        <form class="form-inline my-2 my-lg-0 form-search" align="center" action="outcom_hotel.php" method="POST">
-          <th>
-            <input class="form-control mr-sm-2 input-search" align="left" type="search" placeholder="Search" aria-label="Search" name = "keyword" style="width: 400px">
-          </th>
-          <td>
-            <div class="text" align="left">
-              <select class="text-select">
-                <option>不選擇</option>
-                <option>中區</option>
-                <option>東區</option>
-                <option>西區</option>
-                <option>南區</option>
-                <option>北區</option>
-                <option>西屯區</option>
-                <option>南屯區</option>
-                <option>北屯區</option>
-                <option>豐原區</option>
-                <option>大里區</option>
-                <option>太平區</option>
-                <option>清水區</option>
-                <option>沙鹿區</option>
-                <option>大甲區</option>
-                <option>東勢區</option>
-                <option>梧棲區</option>
-                <option>烏日區</option>
-                <option>神岡區</option>
-                <option>大肚區</option>
-                <option>大雅區</option>
-                <option>后里區</option>
-                <option>霧峰區</option>
-                <option>潭子區</option>
-                <option>龍井區</option>
-                <option>外埔區</option>
-                <option>和平區</option>
-                <option>石岡區</option>
-                <option>大安區</option>
-                <option>新社區</option>
-              </select>
-            </div>
-          </td>
-      </tr>
-      <tr>
-        <th>
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜尋</button>
-        </th>
-        <td>
-          <button class="btn btn-outline-success my-2 my-sm-0" type="reset">重設</button>
-        </td>
-      </tr>
-      </form>
-
-    </table>
+  
   </div>
   <section id="carouselbody">
     <div class="bd-example">
@@ -311,24 +257,33 @@ $i = 0;
     </div>
   </section>
   <table style="border-bottom:1px solid #ddd ; padding-bottom:10px ; margin-left: 10% ; margin-right: 10% ; margin-top: 2%;" cellpadding="3" ;border='10' RULES=ROWS>
-    <tr>
-      <th></th>
-      <th>建議搜尋</th>
-      <th>星星評分</th>
-      <th align-text:center>地址</th>
-    </tr>
     <?php
-    for ($i = 0; $i < 5; $i++) {
-      echo "
-                <tr >
-                    <td bgcolor=#f0efd3>
-                    <img src=\"$img[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
-                    </td>
-                    <td width=\"40%\" bgcolor=#f0efd3>$name[$i]</td>
-                    <td width=\"10%\" bgcolor=#f0efd3>$stars[$i]</td>
-                    <td width=\"50%\" bgcolor=#f0efd3>$location[$i]</td>
-                </tr>
-                ";
+    $i = 0;
+    if($cnt == 0){
+        echo "查無資料";
+        echo $sql;
+    }
+    else{ 
+        echo "
+            <tr>
+            <th></th>
+            <th>搜尋結果</th>
+            <th>星星評分</th>
+            <th align-text:center>地址</th>
+            </tr>
+        ";
+        for ($i = 0; $i < $cnt; $i++) {
+        echo "
+                    <tr >
+                        <td bgcolor=#f0efd3>
+                        <img src=\"$img[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
+                        </td>
+                        <td width=\"40%\" bgcolor=#f0efd3>$name[$i]</td>
+                        <td width=\"10%\" bgcolor=#f0efd3>$stars[$i]</td>
+                        <td width=\"50%\" bgcolor=#f0efd3>$location[$i]</td>
+                    </tr>
+                    ";
+        }
     }
     ?>
   </table>

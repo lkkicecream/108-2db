@@ -126,7 +126,18 @@ $i = 0;
               <span class="header-menu-ch-title">聯絡我們</span>
             </a>
           </li>
-
+          <li class="header-menu-list" style="top: 10px;">
+            <a href="hotel_search.php">
+              <span class="header-menu-en-title">Hotel</span>
+              <span class="header-menu-ch-title">飯店</span>
+            </a>
+          </li>
+          <li class="header-menu-list" style="top: 10px;">
+            <a href="sights_search.php">
+              <span class="header-menu-en-title">Sight</span>
+              <span class="header-menu-ch-title">景點</span>
+            </a>
+          </li>
           <li class="header-menu-list" style="margin-left: 200px; top: 10px;">
             <a href="signup_sight.php">
               <span class="header-menu-en-title">login</span>
