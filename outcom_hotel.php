@@ -128,16 +128,22 @@ while ($data = mysqli_fetch_array($cur)) {
               <span class="header-menu-ch-title">飯店</span>
             </a>
           </li>
-          <li class="header-menu-list" style="top: 10px;">
+          <li class="header-menu-list" style="top: 10px; margin-right: 150px;">
             <a href="sights_search.php">
               <span class="header-menu-en-title">Sight</span>
               <span class="header-menu-ch-title">景點</span>
             </a>
           </li>
-          <li class="header-menu-list" style="margin-left: 200px; top: 10px;">
+          <li class="header-menu-list" style="top: 10px;">
             <a href="signup_hotel.php">
               <span class="header-menu-en-title">login</span>
               <span class="header-menu-ch-title">登入</span>
+            </a>
+          </li>
+          <li class="header-menu-list" style="top: 10px;">
+            <a href="signup_sight.php">
+              <span class="header-menu-en-title">regist</span>
+              <span class="header-menu-ch-title">註冊</span>
             </a>
           </li>
         </ul>
