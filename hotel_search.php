@@ -137,14 +137,14 @@ $i = 0;
           </li>
           <li class="header-menu-list" style="top: 10px;">
             <a href="signup_hotel.php">
-              <span class="header-menu-en-title">login</span>
+              <span class="header-menu-en-title"><?php echo $_SESSION["account_en"]?></span>
               <span class="header-menu-ch-title"><?php echo $_SESSION["account"]?></span>
             </a>
           </li>
           <li class="header-menu-list" style="top: 10px;">
             <a href="signup_sight.php">
-              <span class="header-menu-en-title">regist</span>
-              <span class="header-menu-ch-title">註冊</span>
+              <span class="header-menu-en-title"><?php echo $_SESSION["login_en"]?></span>
+              <span class="header-menu-ch-title"><?php echo $_SESSION["login"]?></span>
             </a>
           </li>
         </ul>

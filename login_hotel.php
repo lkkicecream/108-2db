@@ -29,8 +29,10 @@
 					$num_users=$result->num_rows;//在資料庫中搜索到符合的使用者
 					if($num_users!=0){//搜尋到該使用者
 						$account = mysqli_fetch_array($result);
-						$_SESSION['account'] = $account[0];
-						$_SESSION['account1'] = $_SESSION["account"];
+						$_SESSION['account'] = "歡迎！";
+						$_SESSION['account_en'] = "Welcome！";
+						$_SESSION['login'] = $account[0];
+						$_SESSION['login_en'] = "account";
 						header("location: hotel_search.php");
 					}
 					else{

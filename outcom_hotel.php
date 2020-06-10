@@ -163,7 +163,7 @@
                             <span class="header-menu-ch-title">飯店</span>
                         </a>
                     </li>
-                    <li class="header-menu-list" style="top: 10px; margin-right: 100px;">
+                    <li class="header-menu-list" style="top: 10px; margin-right: 60px;">
                         <a href="sights_search.php">
                             <span class="header-menu-en-title">Sight</span>
                             <span class="header-menu-ch-title">景點</span>
@@ -299,7 +299,7 @@
     </section>
     <table style="border-bottom:1px solid #ddd ; padding-bottom:10px ; margin-left: 10% ; margin-right: 10% ; margin-top: 2%;" cellpadding="3" ;border='10' RULES=ROWS>
         <?php
-        if ($word != '' and $cnt1 == 0){
+        if ($word != '' and $cnt1 == 0 or $cnt == 0){
             echo "
             <tr>
             <th></th>

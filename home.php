@@ -44,9 +44,12 @@
 </html>
 <?php
     session_start();
-    $_SESSION['account'] = "登入";
-    if($_SESSION['account'] != $_SESSION['account1'])    
+    if($_SESSION['account'] == null) {    
         $_SESSION['account'] = "登入";
-    if($_SESSION['login'] == " ")
+        $_SESSION['account_en'] = "註冊";
+    }
+    if($_SESSION['login'] == null) {
         $_SESSION['login'] = "註冊";
+        $_SESSION['login_en'] = "regist";
+    }
 ?>
