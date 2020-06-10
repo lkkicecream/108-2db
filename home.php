@@ -42,14 +42,3 @@
     </ul>
 </body>
 </html>
-<?php
-    session_start();
-    if($_SESSION['account'] == null) {    
-        $_SESSION['account'] = "登入";
-        $_SESSION['account_en'] = "註冊";
-    }
-    if($_SESSION['login'] == null) {
-        $_SESSION['login'] = "註冊";
-        $_SESSION['login_en'] = "regist";
-    }
-?>
