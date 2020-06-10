@@ -2,21 +2,21 @@
 require_once("connect.php");
 $con = create_connection();
 //組合查詢字串
+$word = $_POST['keyword'];
 $sql = "SELECT imagesights.filepic , sights.sname, sights.sstars, sights.slocation 
-            FROM imagesights, sights 
-            WHERE imagesights.filename = sights.sname and sights.sstars >= 4";
+        FROM imagesights, sights 
+        WHERE imagesights.filename = sights.sname and sights.sname LIKE '%" . $word . "%'";
 //
 $cur = execute_sql($con, "test", $sql);
 //取出資料
-$i = 0;
+$cnt = 0;
 while ($data = mysqli_fetch_array($cur)) {
-  $img[$i] = "data:image/jpeg;base64," . $data[0];
-  $name[$i] = $data[1];
-  $stars[$i] = $data[2];
-  $location[$i] = $data[3];
-  $i++;
+  $img[$cnt] = "data:image/jpeg;base64," . $data[0];
+  $name[$cnt] = $data[1];
+  $stars[$cnt] = $data[2];
+  $location[$cnt] = $data[3];
+  $cnt++;
 }
-$i = 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,10 +25,6 @@ $i = 0;
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="https://kit.fontawesome.com/66a625edde.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <title>首頁</title>
-
   <script src="https://kit.fontawesome.com/66a625edde.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <title>首頁</title>
@@ -121,7 +117,7 @@ $i = 0;
       <nav class="header-menu-box-list">
         <ul class="header-menu-class">
           <li class="header-menu-list" style="top: 10px;">
-            <a href="/#index-contact" onclick="menu_scrollTo(2);return false;">
+            <a href="/#index-contact">
               <span class="header-menu-en-title">Contact</span>
               <span class="header-menu-ch-title">聯絡我們</span>
             </a>
@@ -220,61 +216,7 @@ $i = 0;
     <!-- 展開視窗 END -->
 
   </header>
-  <div align="center">
-    <table style="margin-top: 4em">
-      <tr>
-        <form class="form-inline my-2 my-lg-0 form-search" align="center" action="outcom_sight.php" method="POST">
-          <th>
-            <input class="form-control mr-sm-2 input-search" align="left" type="search" placeholder="Search" aria-label="Search" name="keyword"style="width: 400px">
-          </th>
-          <td>
-            <div class="text" align="left">
-              <select class="text-select" name="select">
-                <option value="0">不選擇</option>
-                <option value="中區">中區</option>
-                <option value="東區">東區</option>
-                <option value="西區">西區</option>
-                <option value="南區">南區</option>
-                <option value="北區">北區</option>
-                <option value="西屯">西屯區</option>
-                <option value="南屯">南屯區</option>
-                <option value="北屯">北屯區</option>
-                <option value="豐原">豐原區</option>
-                <option value="大里">大里區</option>
-                <option value="太平">太平區</option>
-                <option value="清水">清水區</option>
-                <option value="沙鹿">沙鹿區</option>
-                <option value="大甲">大甲區</option>
-                <option value="東勢">東勢區</option>
-                <option value="梧棲">梧棲區</option>
-                <option value="烏日">烏日區</option>
-                <option value="神岡">神岡區</option>
-                <option value="大肚">大肚區</option>
-                <option value="大雅">大雅區</option>
-                <option value="后里">后里區</option>
-                <option value="霧峰">霧峰區</option>
-                <option value="潭子">潭子區</option>
-                <option value="龍井">龍井區</option>
-                <option value="外埔">外埔區</option>
-                <option value="和平">和平區</option>
-                <option value="石岡">石岡區</option>
-                <option value="大安">大安區</option>
-                <option value="新社">新社區</option>
-              </select>
-            </div>
-          </td>
-      </tr>
-      <tr>
-        <th>
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜尋</button>
-        </th>
-        <td>
-          <button class="btn btn-outline-success my-2 my-sm-0" type="reset">重設</button>
-        </td>
-      </tr>
-      </form>
-
-    </table>
+  
   </div>
   <section id="carouselbody">
     <div class="bd-example">
@@ -286,22 +228,22 @@ $i = 0;
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <a href="https://travel.taichung.gov.tw/zh-tw/Event/ActivityDetail/5205/" class="link" title="2019谷關七雄登山趣" target="_blank">
-              <img src="https://travel.taichung.gov.tw/Utility/DisplayImage?id=35168&prefix=original_" class="d-block w-100" alt="...">
+            <a href="https://travel.taichung.gov.tw/zh-tw/Shop/Accommodation/4047/%E7%B4%85%E9%BB%9E%E6%96%87%E6%97%85" class="link" title="2019谷關七雄登山趣" target="_blank">
+              <img src="https://travel.taichung.gov.tw/Utility/DisplayImage?id=10730" class="d-block w-100" alt="...">
               <div class="carousel-caption d-none d-md-block">
               </div>
             </a>
           </div>
           <div class="carousel-item">
-            <a href="http://taichung.csii.com.tw/" class="link" title="臺中市即時景點或鄰近重要道路實況影像" target="_blank">
-              <img src="https://travel.taichung.gov.tw/Utility/DisplayImage?id=34661&amp;prefix=original_" class="d-block w-100" alt="...">
+            <a href="https://travel.taichung.gov.tw/zh-tw/Shop/Accommodation/3761/%E7%A6%8F%E5%AE%B9%E5%A4%A7%E9%A3%AF%E5%BA%97-%E9%BA%97%E5%AF%B6%E6%A8%82%E5%9C%92" class="link" title="臺中市即時景點或鄰近重要道路實況影像" target="_blank">
+              <img src="https://travel.taichung.gov.tw/Utility/DisplayImage?id=15155" class="d-block w-100" alt="...">
               <div class="carousel-caption d-none d-md-block">
               </div>
             </a>
           </div>
           <div class="carousel-item">
-            <a href="https://tourism.taichung.gov.tw/" class="link" title="108年工作成果" target="_blank">
-              <img src="https://travel.taichung.gov.tw/Utility/DisplayImage?id=32766&amp;prefix=original_" class="d-block w-100" alt="...">
+            <a href="https://travel.taichung.gov.tw/zh-tw/Shop/Accommodation/2283/%E7%A6%8F%E6%B3%B0%E6%A1%94%E5%AD%90%E5%95%86%E5%8B%99%E6%97%85%E9%A4%A8" class="link" title="108年工作成果" target="_blank">
+              <img src="https://travel.taichung.gov.tw/Utility/DisplayImage?id=4573" class="d-block w-100" alt="...">
               <div class="carousel-caption d-none d-md-block">
               </div>
             </a>
@@ -321,24 +263,33 @@ $i = 0;
     </div>
   </section>
   <table style="border-bottom:1px solid #ddd ; padding-bottom:10px ; margin-left: 10% ; margin-right: 10% ; margin-top: 2%;" cellpadding="3" ;border='10' RULES=ROWS>
-    <tr>
-      <th></th>
-      <th>建議搜尋</th>
-      <th>星星評分</th>
-      <th align-text:center>地址</th>
-    </tr>
     <?php
-    for ($i = 0; $i < 5; $i++) {
-      echo "
-                <tr >
-                    <td bgcolor=#f0efd3>
-                    <img src=\"$img[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
-                    </td>
-                    <td width=\"40%\" bgcolor=#f0efd3>$name[$i]</td>
-                    <td width=\"10%\" bgcolor=#f0efd3>$stars[$i]</td>
-                    <td width=\"50%\" bgcolor=#f0efd3>$location[$i]</td>
-                </tr>
-                ";
+    $i = 0;
+    if($cnt == 0){
+        echo "查無資料";
+        echo $sql;
+    }
+    else{ 
+        echo "
+            <tr>
+            <th></th>
+            <th>搜尋結果</th>
+            <th>星星評分</th>
+            <th align-text:center>地址</th>
+            </tr>
+        ";
+        for ($i = 0; $i < $cnt; $i++) {
+        echo "
+                    <tr >
+                        <td bgcolor=#f0efd3>
+                        <img src=\"$img[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
+                        </td>
+                        <td width=\"40%\" bgcolor=#f0efd3>$name[$i]</td>
+                        <td width=\"10%\" bgcolor=#f0efd3>$stars[$i]</td>
+                        <td width=\"50%\" bgcolor=#f0efd3>$location[$i]</td>
+                    </tr>
+                    ";
+        }
     }
     ?>
   </table>
