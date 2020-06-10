@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once("connect.php");
 $con = create_connection();
 //組合查詢字串
@@ -128,7 +129,7 @@ $i = 0;
               <span class="header-menu-ch-title">飯店</span>
             </a>
           </li>
-          <li class="header-menu-list" style="top: 10px; margin-right: 100px;">
+          <li class="header-menu-list" style="top: 10px; margin-right: 60px;">
             <a href="sights_search.php">
               <span class="header-menu-en-title">Sight</span>
               <span class="header-menu-ch-title">景點</span>
@@ -137,7 +138,7 @@ $i = 0;
           <li class="header-menu-list" style="top: 10px;">
             <a href="signup_hotel.php">
               <span class="header-menu-en-title">login</span>
-              <span class="header-menu-ch-title">登入</span>
+              <span class="header-menu-ch-title"><?php echo $_SESSION["account"]?></span>
             </a>
           </li>
           <li class="header-menu-list" style="top: 10px;">
