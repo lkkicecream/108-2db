@@ -396,7 +396,10 @@ $i = 0;
                     </td>
                     <td width=\"40%\" bgcolor=#f0efd3>$name[$b]</td>
                     <td width=\"10%\" bgcolor=#f0efd3>$stars[$b]</td>
-                    <td width=\"50%\" bgcolor=#f0efd3>$location[$b]</td>
+                    <td width=\"45%\" bgcolor=#f0efd3>$location[$b]</td>
+                    <td width=\"5%\"  bgcolor=#f0efd3><button type=\"button\"><img src=\"like.png\" style=\"height: 50px; width: 50px; border=0;\"></button>
+                    </td>
+                    
                 </tr>
                 ";
     }
