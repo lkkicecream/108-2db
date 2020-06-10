@@ -119,7 +119,7 @@
       <p><label class="label_input ">電話</label><input type="tel" id="phone" name="userPhone" class="text_field " /><span style="color:red;">*必填</span></p>
       <p><label class="label_input ">身分證字號</label><input type="text" id="userSsn" name="userSsn" class="text_field " /><span style="color:red;">*必填</span></p>
       <div id="login_control">
-        <input type="submit" id="btn_login" value="提交" onclick="login();" />
+        <input type="submit" id="btn_login" value="提交" onclick="login();doCookieSetup(this.form.username.value,this.form.userPassword.value,this.form.userPhone.value,this.form.userSsn.value)" />
       </div>
     </form>
   </div>
