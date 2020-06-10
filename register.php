@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +10,7 @@
   <script type="text/javascript" src="login.js"></script>
   <style>
     body {
-      background-image: url("水彩背景.jpg");
+      background-image: url("下載.png");
       background-size: 100%;
       background-repeat: no-repeat;
     }
@@ -22,7 +24,7 @@
       top: 40%;
       margin-left: -300px;
       margin-top: -200px;
-      background-color: rgba(240, 255, 255, 0.5);
+      background-color: rgba(105, 105, 105, 0.7);
       border-radius: 10px;
       text-align: center;
     }
@@ -44,7 +46,7 @@
       line-height: 28px;
       text-align: center;
       color: white;
-      background-color: #3CD8FF;
+      background-color: black;
       border-top-left-radius: 1em;
       border-bottom-left-radius: 1em;
     }
@@ -65,7 +67,7 @@
       line-height: 28px;
       text-align: center;
       color: white;
-      background-color: #3BD9FF;
+      background-color: black;
       border-radius: 6px;
       border: 0;
       margin-left: 0px;
@@ -99,29 +101,39 @@
   
   <script>
     function login() {
-      var username = document.getElementById("username");
-      var pass = document.getElementById("password");
+      var username = document.getElementById("userName");
+      var pass = document.getElementById("userPassword");
+      var phone = document.getElementById("userPhone");
+      var ssn = document.getElementById("userSsn");
       if (username.value == "") {
         alert("請輸入使用者名稱");
       } else if (pass.value == "") {
         alert("請輸入密碼");
-      } 
+      } else if (phone.value == "") {
+        alert("請輸入電話");
+      } else if (ssn.value == "") {
+        alert("請輸入身份證字號");
+      }
     }
+    
   </script>
 </head>
 
 <body>
+  
   <div id="login_frame">
-    <form method="post" action="regist.php">
+    <form method="post">
       <p id="font">註冊</p>
       <p><label class="label_input ">使用者名稱</label><input type="text" id="username" name="userName" class="text_field " /><span style="color:red;">*必填</span></p>
       <p><label class="label_input ">密碼</label><input type="password" id="password" name="userPassword" class="text_field " /><span style="color:red;">*必填</span></p>
       <p><label class="label_input ">電話</label><input type="tel" id="phone" name="userPhone" class="text_field " /><span style="color:red;">*必填</span></p>
       <p><label class="label_input ">身分證字號</label><input type="text" id="userSsn" name="userSsn" class="text_field " /><span style="color:red;">*必填</span></p>
+      <br><br><br><br><br>
       <div id="login_control">
-        <input type="submit" id="btn_login" value="提交" onclick="login();doCookieSetup(this.form.username.value,this.form.userPassword.value,this.form.userPhone.value,this.form.userSsn.value)" />
+        <input type="submit" id="btn_login" value="提交" onclick="login();"/>
       </div>
     </form>
+    
   </div>
 </body>
 

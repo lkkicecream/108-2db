@@ -8,7 +8,7 @@
   <script type="text/javascript" src="login.js"></script>
   <style>
     body {
-      background-image: url("132.png");
+      background-image: url("下載.png");
       background-size: 100%;
       background-repeat: no-repeat;
     }
@@ -22,7 +22,7 @@
       top: 40%;
       margin-left: -300px;
       margin-top: -200px;
-      background-color: rgba(240, 255, 255, 0.5);
+      background-color: rgba(105, 105, 105, 0.7);
       border-radius: 10px;
       text-align: center;
     }
