@@ -283,21 +283,21 @@ $i = 0;
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <a href="https://travel.taichung.gov.tw/zh-tw/Shop/Accommodation/4047/%E7%B4%85%E9%BB%9E%E6%96%87%E6%97%85" class="link" title="2019谷關七雄登山趣" target="_blank">
+            <a href="https://travel.taichung.gov.tw/zh-tw/Shop/Accommodation/4047/%E7%B4%85%E9%BB%9E%E6%96%87%E6%97%85" class="link" title="紅點文旅" target="_blank">
               <img src="https://travel.taichung.gov.tw/Utility/DisplayImage?id=10730" class="d-block w-100" alt="...">
               <div class="carousel-caption d-none d-md-block">
               </div>
             </a>
           </div>
           <div class="carousel-item">
-            <a href="https://travel.taichung.gov.tw/zh-tw/Shop/Accommodation/3761/%E7%A6%8F%E5%AE%B9%E5%A4%A7%E9%A3%AF%E5%BA%97-%E9%BA%97%E5%AF%B6%E6%A8%82%E5%9C%92" class="link" title="臺中市即時景點或鄰近重要道路實況影像" target="_blank">
+            <a href="https://travel.taichung.gov.tw/zh-tw/Shop/Accommodation/3761/%E7%A6%8F%E5%AE%B9%E5%A4%A7%E9%A3%AF%E5%BA%97-%E9%BA%97%E5%AF%B6%E6%A8%82%E5%9C%92" class="link" title="福容大飯店-麗寶樂園" target="_blank">
               <img src="https://travel.taichung.gov.tw/Utility/DisplayImage?id=15155" class="d-block w-100" alt="...">
               <div class="carousel-caption d-none d-md-block">
               </div>
             </a>
           </div>
           <div class="carousel-item">
-            <a href="https://travel.taichung.gov.tw/zh-tw/Shop/Accommodation/2283/%E7%A6%8F%E6%B3%B0%E6%A1%94%E5%AD%90%E5%95%86%E5%8B%99%E6%97%85%E9%A4%A8" class="link" title="108年工作成果" target="_blank">
+            <a href="https://travel.taichung.gov.tw/zh-tw/Shop/Accommodation/2283/%E7%A6%8F%E6%B3%B0%E6%A1%94%E5%AD%90%E5%95%86%E5%8B%99%E6%97%85%E9%A4%A8" class="link" title="福泰桔子商務旅館" target="_blank">
               <img src="https://travel.taichung.gov.tw/Utility/DisplayImage?id=4573" class="d-block w-100" alt="...">
               <div class="carousel-caption d-none d-md-block">
               </div>
@@ -325,18 +325,27 @@ $i = 0;
       <th align-text:center>地址</th>
     </tr>
     <?php
-    for ($i = 0; $i < 5; $i++) {
+    $a = Array();
+    for($i=1;$i<=5;$i++){  //產生20個
+      $b=rand(0,35);  //產生1~25的亂數
+        if(in_array($b,$a)){
+          $i--;
+          continue;
+      }
+      $a[$i]=$b;
       echo "
                 <tr >
                     <td bgcolor=#f0efd3>
-                    <img src=\"$img[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
+                    <img src=\"$img[$b] \" alt=\"\" style=\"height: 200px; width: 200px\">
                     </td>
-                    <td width=\"40%\" bgcolor=#f0efd3>$name[$i]</td>
-                    <td width=\"10%\" bgcolor=#f0efd3>$stars[$i]</td>
-                    <td width=\"50%\" bgcolor=#f0efd3>$location[$i]</td>
+                    <td width=\"40%\" bgcolor=#f0efd3>$name[$b]</td>
+                    <td width=\"10%\" bgcolor=#f0efd3>$stars[$b]</td>
+                    <td width=\"50%\" bgcolor=#f0efd3>$location[$b]</td>
                 </tr>
                 ";
-    }
+  }
+
+    
     ?>
   </table>
   <!-- zenscroll -->

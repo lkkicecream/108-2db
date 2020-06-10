@@ -4,7 +4,7 @@ $con = create_connection();
 //組合查詢字串
 $sql = "SELECT imagesights.filepic , sights.sname, sights.sstars, sights.slocation 
             FROM imagesights, sights 
-            WHERE imagesights.filename = sights.sname and sights.sstars >= 4";
+            WHERE imagesights.filename = sights.sname and sights.sstars >= 4.4";
 //
 $cur = execute_sql($con, "test", $sql);
 //取出資料
@@ -328,18 +328,41 @@ $i = 0;
       <th align-text:center>地址</th>
     </tr>
     <?php
-    for ($i = 0; $i < 5; $i++) {
+    /* $a = Array();
+        for($i=1;$i<=5;$i++){  //產生20個
+          $b=mt_rand(0,23);  //產生1~25的亂數
+            if(in_array($b,$a)){
+              $i--;
+              continue;
+            }
+            $a[$i]=$b;*/
+            $Rand = Array(); //定義為陣列
+
+    $count = 5 ; //共產生幾筆
+    for ($i = 1; $i <= $count; $i++) {
+        $randval = mt_rand(0,23); //取得範圍為1~10亂數
+        if (in_array($randval, $Rand)) { //如果已產生過迴圈重跑
+            $i--;
+        }else{
+            $Rand[] = $randval; //若無重復則 將亂數塞入陣列
+        }
+    }
+    for($j = 0; $j < 5; $j ++){
+      $b=$Rand[$j];
       echo "
                 <tr >
                     <td bgcolor=#f0efd3>
-                    <img src=\"$img[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
+                    <img src=\"$img[$b] \" alt=\"\" style=\"height: 200px; width: 200px\">
                     </td>
-                    <td width=\"40%\" bgcolor=#f0efd3>$name[$i]</td>
-                    <td width=\"10%\" bgcolor=#f0efd3>$stars[$i]</td>
-                    <td width=\"50%\" bgcolor=#f0efd3>$location[$i]</td>
+                    <td width=\"40%\" bgcolor=#f0efd3>$name[$b]</td>
+                    <td width=\"10%\" bgcolor=#f0efd3>$stars[$b]</td>
+                    <td width=\"50%\" bgcolor=#f0efd3>$location[$b]</td>
                 </tr>
                 ";
     }
+      
+    
+
     ?>
   </table>
   <!-- zenscroll -->
