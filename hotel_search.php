@@ -140,7 +140,7 @@ $i = 0;
               <span class="header-menu-ch-title">登入</span>
             </a>
           </li>
-          <li class="header-menu-list"  style="top: 10px;">
+          <li class="header-menu-list" style="top: 10px;">
             <a href="signup_sight.php">
               <span class="header-menu-en-title">regist</span>
               <span class="header-menu-ch-title">註冊</span>
@@ -221,41 +221,41 @@ $i = 0;
       <tr>
         <form class="form-inline my-2 my-lg-0 form-search" align="center" action="outcom_hotel.php" method="POST">
           <th>
-            <input class="form-control mr-sm-2 input-search" align="left" type="search" placeholder="Search" aria-label="Search" name = "keyword" style="width: 400px">
+            <input class="form-control mr-sm-2 input-search" align="left" type="search" placeholder="Search" aria-label="Search" name="keyword" style="width: 400px;">
           </th>
           <td>
             <div class="text" align="left">
-              <select class="text-select">
-                <option>不選擇</option>
-                <option>中區</option>
-                <option>東區</option>
-                <option>西區</option>
-                <option>南區</option>
-                <option>北區</option>
-                <option>西屯區</option>
-                <option>南屯區</option>
-                <option>北屯區</option>
-                <option>豐原區</option>
-                <option>大里區</option>
-                <option>太平區</option>
-                <option>清水區</option>
-                <option>沙鹿區</option>
-                <option>大甲區</option>
-                <option>東勢區</option>
-                <option>梧棲區</option>
-                <option>烏日區</option>
-                <option>神岡區</option>
-                <option>大肚區</option>
-                <option>大雅區</option>
-                <option>后里區</option>
-                <option>霧峰區</option>
-                <option>潭子區</option>
-                <option>龍井區</option>
-                <option>外埔區</option>
-                <option>和平區</option>
-                <option>石岡區</option>
-                <option>大安區</option>
-                <option>新社區</option>
+              <select class="text-select" name="select">
+                <option value="0">不選擇</option>
+                <option value="中區">中區</option>
+                <option value="東區">東區</option>
+                <option value="西區">西區</option>
+                <option value="南區">南區</option>
+                <option value="北區">北區</option>
+                <option value="西屯">西屯區</option>
+                <option value="南屯">南屯區</option>
+                <option value="北屯">北屯區</option>
+                <option value="豐原">豐原區</option>
+                <option value="大里">大里區</option>
+                <option value="太平">太平區</option>
+                <option value="清水">清水區</option>
+                <option value="沙鹿">沙鹿區</option>
+                <option value="大甲">大甲區</option>
+                <option value="東勢">東勢區</option>
+                <option value="梧棲">梧棲區</option>
+                <option value="烏日">烏日區</option>
+                <option value="神岡">神岡區</option>
+                <option value="大肚">大肚區</option>
+                <option value="大雅">大雅區</option>
+                <option value="后里">后里區</option>
+                <option value="霧峰">霧峰區</option>
+                <option value="潭子">潭子區</option>
+                <option value="龍井">龍井區</option>
+                <option value="外埔">外埔區</option>
+                <option value="和平">和平區</option>
+                <option value="石岡">石岡區</option>
+                <option value="大安">大安區</option>
+                <option value="新社">新社區</option>
               </select>
             </div>
           </td>
