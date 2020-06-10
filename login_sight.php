@@ -9,7 +9,8 @@
 	<body>
 		<div class="main">
 			<?php
-                require_once("connect.php");
+				require_once("connect.php");
+				session_start();
 				$name=$_POST['userName'];
 				$password=$_POST['userPassword'];
 
@@ -24,6 +25,11 @@
                     
 					$num_users=$result->num_rows;//在資料庫中搜索到符合的使用者
 					if($num_users!=0){//搜尋到該使用者
+						$account = mysqli_fetch_array($result);
+						$_SESSION['account'] = "歡迎！";
+						$_SESSION['account_en'] = "Welcome！";
+						$_SESSION['login'] = $account[0];
+						$_SESSION['login_en'] = "登出";
 						header("location: sights_search.php");
 					}
 					else{

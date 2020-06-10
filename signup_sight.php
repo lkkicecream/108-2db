@@ -98,8 +98,10 @@
 
       if (username.value == "") {
         alert("請輸入使用者名稱");
+        document.myform.action = "signup_sight.php";
       } else if (pass.value == "") {
         alert("請輸入密碼");
+        document.myform.action = "signup_sight.php";
       } 
     }
   </script>
@@ -108,7 +110,7 @@
 <body>
   <div id="login_frame">
     <p id="image_logo"><img src="旅遊管理企業.png" style="width: 20em; height: 15em"></p>
-    <form method="post" action="login_sight.php">
+    <form method="post" action="login_sight.php" name="myform">
       <p><label class="label_input">使用者名稱</label><input type="text" id="username" name="userName" class="text_field" /></p>
       <p><label class="label_input">密碼</label><input type="password" id="password" name="userPassword" class="text_field" /></p>
       <div id="login_control">

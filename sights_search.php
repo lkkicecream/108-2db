@@ -175,7 +175,7 @@ $i = 0;
           <?php
           if (!$login)
             echo "<li class=\"header-menu-list\">
-              <a href=\"signup_hotel.php\">
+              <a href=\"signup_sight.php\">
                 <span class=\"header-menu-en-title\">login</span>
                 <span class=\"header-menu-ch-title\">登入</span>
               </a>
