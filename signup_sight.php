@@ -8,11 +8,11 @@
   <script type="text/javascript" src="login.js"></script>
   <style>
     body {
-      background-image: url("水彩背景.jpg");
+      background-image: url("132.png");
       background-size: 100%;
       background-repeat: no-repeat;
     }
-
+    
     #login_frame {
       width: 30em;
       height: 30em;
@@ -44,7 +44,7 @@
       line-height: 28px;
       text-align: center;
       color: white;
-      background-color: #3CD8FF;
+      background-color: black;
       border-top-left-radius: 1em;
       border-bottom-left-radius: 1em;
     }
@@ -65,7 +65,7 @@
       line-height: 28px;
       text-align: center;
       color: white;
-      background-color: #3BD9FF;
+      background-color: black;
       border-radius: 6px;
       border: 0;
       margin-left: 0px;

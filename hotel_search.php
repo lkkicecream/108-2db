@@ -100,6 +100,16 @@ $i = 0;
       margin: auto;
     }
   </style>
+  <script language = 'javascript' type = 'text/javascript'>
+    function search() {
+      var search1 = document.getElementById("search1");
+      var select1 = document.getElementById("select1");
+      if (search1.value == "" && select1.options[select1.selectedIndex].value == 0) {
+        alert("請輸入關鍵字");
+        document.myform.action ="hotel_search.php";
+      }
+    }
+  </script>
 </head>
 
 <body>
@@ -115,38 +125,67 @@ $i = 0;
 
     <!-- Menu -->
     <section class="header-menu-box">
-      <nav class="header-menu-box-list">
-        <ul class="header-menu-class">
-          <li class="header-menu-list" style="top: 10px;">
+      <nav class="header-menu-box-list navbar navbar-expand-lg">
+        <ul class="header-menu-class navbar-nav mr-auto">
+          <li class="header-menu-list">
             <a href="/#index-contact" onclick="menu_scrollTo(2);return false;">
               <span class="header-menu-en-title">Contact</span>
               <span class="header-menu-ch-title">聯絡我們</span>
             </a>
           </li>
-          <li class="header-menu-list" style="top: 10px;">
+          <li class="header-menu-list">
             <a href="hotel_search.php">
               <span class="header-menu-en-title">Hotel</span>
               <span class="header-menu-ch-title">飯店</span>
             </a>
           </li>
-          <li class="header-menu-list" style="top: 10px; margin-right: 60px;">
+          <li class="header-menu-list">
             <a href="sights_search.php">
               <span class="header-menu-en-title">Sight</span>
               <span class="header-menu-ch-title">景點</span>
             </a>
           </li>
-          <li class="header-menu-list" style="top: 10px;">
-            <a href="signup_hotel.php">
-              <span class="header-menu-en-title"><?php echo $_SESSION["account_en"]?></span>
-              <span class="header-menu-ch-title"><?php echo $_SESSION["account"]?></span>
-            </a>
-          </li>
-          <li class="header-menu-list" style="top: 10px;">
-            <a href="signup_sight.php">
-              <span class="header-menu-en-title"><?php echo $_SESSION["login_en"]?></span>
-              <span class="header-menu-ch-title"><?php echo $_SESSION["login"]?></span>
-            </a>
-          </li>
+          <?php
+          $account_en = $_SESSION['account_en'];
+          $account = $_SESSION['account'];
+
+          $login_en = $_SESSION["login_en"];
+          $login = $_SESSION["login"];
+          if ($login) {
+            echo "
+              <li class=\"header-menu-list\">
+              <a href=\"\">
+                <span class=\"header-menu-en-title\"> $account_en </span>
+                <span class=\"header-menu-ch-title\"> $account </span>
+              </a>
+              </li>
+              <li class=\"header-menu-list\">
+                <a href=\"logout.php\">
+                  <span class=\"header-menu-en-title\"> $login_en </span>
+                  <span class=\"header-menu-ch-title\"> $login </span>
+                </a>
+              </li>
+              ";
+          }
+          ?>
+          <?php
+          if (!$login)
+            echo "<li class=\"header-menu-list\">
+              <a href=\"signup_hotel.php\">
+                <span class=\"header-menu-en-title\">login</span>
+                <span class=\"header-menu-ch-title\">登入</span>
+              </a>
+              </li>
+              <li class=\"header-menu-list\">
+                <a href=\"register.php\">
+                  <span class=\"header-menu-en-title\">regist</span>
+                  <span class=\"header-menu-ch-title\">註冊</span>
+                </a>
+              </li>
+              ";
+
+          ?>
+
         </ul>
       </nav>
     </section>
@@ -220,13 +259,13 @@ $i = 0;
   <div align="center">
     <table style="margin-top: 4em">
       <tr>
-        <form class="form-inline my-2 my-lg-0 form-search" align="center" action="outcom_hotel.php" method="POST">
+        <form class="form-inline my-2 my-lg-0 form-search" align="center" action="outcom_hotel.php" method="POST" name="myform">
           <th>
-            <input class="form-control mr-sm-2 input-search" align="left" type="search" placeholder="Search" aria-label="Search" name="keyword" style="width: 400px;">
+            <input class="form-control mr-sm-2 input-search" align="left" type="search" placeholder="Search" aria-label="Search" name="keyword" style="width: 400px;" id="search1">
           </th>
           <td>
             <div class="text" align="left">
-              <select class="text-select" name="select">
+              <select class="text-select" name="select" id="select1">
                 <option value="0">不選擇</option>
                 <option value="中區">中區</option>
                 <option value="東區">東區</option>
@@ -263,7 +302,7 @@ $i = 0;
       </tr>
       <tr>
         <th>
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜尋</button>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="search()">搜尋</button>
         </th>
         <td>
           <button class="btn btn-outline-success my-2 my-sm-0" type="reset">重設</button>
