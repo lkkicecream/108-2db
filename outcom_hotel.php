@@ -330,7 +330,7 @@ while ($data = mysqli_fetch_array($cur)) {
     <table style="border-bottom:1px solid #ddd ; padding-bottom:10px ; margin-left: 10% ; margin-right: 10% ; margin-top: 2%;" cellpadding="3" ;border='10' RULES=ROWS>
         <?php
         if ($cnt == 0 && $cnt1 == 0)
-          echo "查無資料";
+        echo '<p style="font-size: 32px">查無資料 </p>';
         else if ($word != '' and $cnt1 == 0) {
             echo "
                 <tr>
@@ -374,8 +374,12 @@ while ($data = mysqli_fetch_array($cur)) {
                     ";
             }
         } else if ($word != '' and $cnt1 != 0) {
-            if($cnt2 == 0)
-                echo "查無資料";
+            if($cnt2 == 0){
+                
+                echo '<p style="font-size: 32px">查無資料 </p>';
+                
+            }
+           
             else {
                 echo "
                 <tr>
