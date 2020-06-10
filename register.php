@@ -101,9 +101,9 @@
   
   <script>
     function login() {
-      var username = document.getElementById("userName");
-      var pass = document.getElementById("userPassword");
-      var phone = document.getElementById("userPhone");
+      var username = document.getElementById("username");
+      var pass = document.getElementById("password");
+      var phone = document.getElementById("phone");
       var ssn = document.getElementById("userSsn");
       if (username.value == "") {
         alert("請輸入使用者名稱");
