@@ -42,3 +42,11 @@
     </ul>
 </body>
 </html>
+<?php
+    session_start();
+    $_SESSION['account'] = "登入";
+    if($_SESSION['account'] != $_SESSION['account1'])    
+        $_SESSION['account'] = "登入";
+    if($_SESSION['login'] == " ")
+        $_SESSION['login'] = "註冊";
+?>

@@ -38,8 +38,9 @@
 ?>
 <?php  //搜尋 字串 && 地區
     $sql = "SELECT imagehotels.filepic , hotel.hname, hotel.hstars, hotel.hlocation 
-            FROM imagehotels, hotel 
-            WHERE imagehotels.filename = hotel.hname and (hotel.hname LIKE '%" . $word . "%' and hotel.hlocation LIKE'%" . $word1 . "%')";
+            FROM imagehotels, hotel , harea
+            WHERE imagehotels.filename = hotel.hname and (hotel.hname LIKE '%". $word . "%' OR hotel.hlocation LIKE'%" . $word . "%') 
+            and hotel.hname = harea.hname and harea.area = '" . $word1 . "'";
     //
     $cur = execute_sql($con, "test", $sql);
 
@@ -337,6 +338,27 @@
                         <td width=\"40%\" bgcolor=#f0efd3>$name1[$i]</td>
                         <td width=\"10%\" bgcolor=#f0efd3>$stars1[$i]</td>
                         <td width=\"50%\" bgcolor=#f0efd3>$location1[$i]</td>
+                    </tr>
+                    ";
+            }
+        } else if ($word != '' and $cnt1 != 0){
+            echo "
+            <tr>
+            <th></th>
+            <th>搜尋結果</th>
+            <th>星星評分</th>
+            <th align-text:center>地址</th>
+            </tr>
+        ";
+            for ($i = 0; $i < $cnt2; $i++) {
+                echo "
+                    <tr >
+                        <td bgcolor=#f0efd3>
+                        <img src=\"$img2[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
+                        </td>
+                        <td width=\"40%\" bgcolor=#f0efd3>$name2[$i]</td>
+                        <td width=\"10%\" bgcolor=#f0efd3>$stars2[$i]</td>
+                        <td width=\"50%\" bgcolor=#f0efd3>$location2[$i]</td>
                     </tr>
                     ";
             }

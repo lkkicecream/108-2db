@@ -9,6 +9,7 @@
 	<body>
 		<div class="main">
 			<?php
+				session_start();
                 require_once("connect.php");
 				$name=$_POST['userName'];
 				$password=$_POST['userPassword'];
@@ -28,7 +29,8 @@
 					$num_users=$result->num_rows;//在資料庫中搜索到符合的使用者
 					if($num_users!=0){//搜尋到該使用者
 						$account = mysqli_fetch_array($result);
-						$_COOKIE['account'] = $account[0];
+						$_SESSION['account'] = $account[0];
+						$_SESSION['account1'] = $_SESSION["account"];
 						header("location: hotel_search.php");
 					}
 					else{
