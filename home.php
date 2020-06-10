@@ -35,10 +35,24 @@
 </head>
 <body background="home.jpg">
     
-    <div style="text-align:center;"><font color="white"><h1>景點與飯店資訊管理系統<br>C10</font></h1></div>
+    <div style="text-align:right;"><font color="orange"><h1>C10 景點與飯店資訊管理系統</font></h1></div>
     <ul>
         <li><a href="hotel_search.php">找飯店</i></a></li>
         <li><a href="sights_search.php">找景點</i></a></li>
     </ul>
 </body>
 </html>
+<<<<<<< HEAD
+=======
+<?php
+    session_start();
+    if($_SESSION['account'] == null) {    
+        $_SESSION['account'] = "登入";
+        $_SESSION['account_en'] = "login";
+    }
+    if($_SESSION['login'] == null) {
+        $_SESSION['login'] = "註冊";
+        $_SESSION['login_en'] = "regist";
+    }
+?>
+>>>>>>> master

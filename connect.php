@@ -1,8 +1,8 @@
 <?php
     function create_connection() { //連接資料庫
-        $dbhost = "localhost";
-        $dbuser = "root";
-        $dbpasswd = "";
+        $dbhost = "25.64.251.181";
+        $dbuser = "bacon";
+        $dbpasswd = "0000000000";
         
         $con = mysqli_connect($dbhost, $dbuser, $dbpasswd) or die ("Error Connection");
         mysqli_query($con, "SET NAME utf8");
