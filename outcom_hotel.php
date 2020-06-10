@@ -1,57 +1,58 @@
 <?php  //搜尋字串
-    require_once("connect.php");
-    $con = create_connection();
-    //組合查詢字串
-    $word = $_POST['keyword'];
-    $sql = "SELECT imagehotels.filepic , hotel.hname, hotel.hstars, hotel.hlocation 
+require_once("connect.php");
+session_start();
+$con = create_connection();
+//組合查詢字串
+$word = $_POST['keyword'];
+$sql = "SELECT imagehotels.filepic , hotel.hname, hotel.hstars, hotel.hlocation 
             FROM imagehotels, hotel 
             WHERE imagehotels.filename = hotel.hname and (hotel.hname LIKE '%" . $word . "%' or hotel.hlocation LIKE'%" . $word . "%')";
-    //
-    $cur = execute_sql($con, "test", $sql);
-    //取出資料
-    $cnt = 0;
-    while ($data = mysqli_fetch_array($cur)) {
-        $img[$cnt] = "data:image/jpeg;base64," . $data[0];
-        $name[$cnt] = $data[1];
-        $stars[$cnt] = $data[2];
-        $location[$cnt] = $data[3];
-        $cnt++;
-    }
+//
+$cur = execute_sql($con, "test", $sql);
+//取出資料
+$cnt = 0;
+while ($data = mysqli_fetch_array($cur)) {
+    $img[$cnt] = "data:image/jpeg;base64," . $data[0];
+    $name[$cnt] = $data[1];
+    $stars[$cnt] = $data[2];
+    $location[$cnt] = $data[3];
+    $cnt++;
+}
 ?>
 <?php  //搜尋地區
-    //組合查詢字串
-    $word1 = $_POST['select'];
-    $sql = "SELECT imagehotels.filepic , hotel.hname, hotel.hstars, hotel.hlocation 
+//組合查詢字串
+$word1 = $_POST['select'];
+$sql = "SELECT imagehotels.filepic , hotel.hname, hotel.hstars, hotel.hlocation 
             FROM imagehotels, hotel, harea
             WHERE imagehotels.filename = hotel.hname and hotel.hname = harea.hname and harea.area = '" . $word1 . "'";
-    //
-    $cur = execute_sql($con, "test", $sql);
+//
+$cur = execute_sql($con, "test", $sql);
 
-    $cnt1 = 0;
-    while ($data = mysqli_fetch_array($cur)) {
-        $img1[$cnt1] = "data:image/jpeg;base64," . $data[0];
-        $name1[$cnt1] = $data[1];
-        $stars1[$cnt1] = $data[2];
-        $location1[$cnt1] = $data[3];
-        $cnt1++;
-    }
+$cnt1 = 0;
+while ($data = mysqli_fetch_array($cur)) {
+    $img1[$cnt1] = "data:image/jpeg;base64," . $data[0];
+    $name1[$cnt1] = $data[1];
+    $stars1[$cnt1] = $data[2];
+    $location1[$cnt1] = $data[3];
+    $cnt1++;
+}
 ?>
 <?php  //搜尋 字串 && 地區
-    $sql = "SELECT imagehotels.filepic , hotel.hname, hotel.hstars, hotel.hlocation 
+$sql = "SELECT imagehotels.filepic , hotel.hname, hotel.hstars, hotel.hlocation 
             FROM imagehotels, hotel , harea
-            WHERE imagehotels.filename = hotel.hname and (hotel.hname LIKE '%". $word . "%' OR hotel.hlocation LIKE'%" . $word . "%') 
+            WHERE imagehotels.filename = hotel.hname and (hotel.hname LIKE '%" . $word . "%' OR hotel.hlocation LIKE'%" . $word . "%') 
             and hotel.hname = harea.hname and harea.area = '" . $word1 . "'";
-    //
-    $cur = execute_sql($con, "test", $sql);
+//
+$cur = execute_sql($con, "test", $sql);
 
-    $cnt2 = 0;
-    while ($data = mysqli_fetch_array($cur)) {
-        $img2[$cnt2] = "data:image/jpeg;base64," . $data[0];
-        $name2[$cnt2] = $data[1];
-        $stars2[$cnt2] = $data[2];
-        $location2[$cnt2] = $data[3];
-        $cnt2++;
-    }
+$cnt2 = 0;
+while ($data = mysqli_fetch_array($cur)) {
+    $img2[$cnt2] = "data:image/jpeg;base64," . $data[0];
+    $name2[$cnt2] = $data[1];
+    $stars2[$cnt2] = $data[2];
+    $location2[$cnt2] = $data[3];
+    $cnt2++;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,7 +62,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://kit.fontawesome.com/66a625edde.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <title>首頁</title>
 
     <!-- 字型 -->
@@ -149,40 +150,69 @@
 
         <!-- Menu -->
         <section class="header-menu-box">
-            <nav class="header-menu-box-list">
-                <ul class="header-menu-class">
-                    <li class="header-menu-list" style="top: 10px;">
-                        <a href="/#index-contact">
-                            <span class="header-menu-en-title">Contact</span>
-                            <span class="header-menu-ch-title">聯絡我們</span>
-                        </a>
-                    </li>
-                    <li class="header-menu-list" style="top: 10px;">
-                        <a href="hotel_search.php">
-                            <span class="header-menu-en-title">Hotel</span>
-                            <span class="header-menu-ch-title">飯店</span>
-                        </a>
-                    </li>
-                    <li class="header-menu-list" style="top: 10px; margin-right: 60px;">
-                        <a href="sights_search.php">
-                            <span class="header-menu-en-title">Sight</span>
-                            <span class="header-menu-ch-title">景點</span>
-                        </a>
-                    </li>
-                    <li class="header-menu-list" style="top: 10px;">
-                        <a href="signup_hotel.php">
-                            <span class="header-menu-en-title">login</span>
-                            <span class="header-menu-ch-title">登入</span>
-                        </a>
-                    </li>
-                    <li class="header-menu-list" style="top: 10px;">
-                        <a href="signup_sight.php">
-                            <span class="header-menu-en-title">regist</span>
-                            <span class="header-menu-ch-title">註冊</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+        <nav class="header-menu-box-list navbar navbar-expand-lg">
+        <ul class="header-menu-class navbar-nav mr-auto">
+          <li class="header-menu-list">
+            <a href="/#index-contact" onclick="menu_scrollTo(2);return false;">
+              <span class="header-menu-en-title">Contact</span>
+              <span class="header-menu-ch-title">聯絡我們</span>
+            </a>
+          </li>
+          <li class="header-menu-list">
+            <a href="hotel_search.php">
+              <span class="header-menu-en-title">Hotel</span>
+              <span class="header-menu-ch-title">飯店</span>
+            </a>
+          </li>
+          <li class="header-menu-list">
+            <a href="sights_search.php">
+              <span class="header-menu-en-title">Sight</span>
+              <span class="header-menu-ch-title">景點</span>
+            </a>
+          </li>
+          <?php
+          $account_en = $_SESSION['account_en'];
+          $account = $_SESSION['account'];
+
+          $login_en = $_SESSION["login_en"];
+          $login = $_SESSION["login"];
+          if ($login) {
+            echo "
+              <li class=\"header-menu-list\">
+              <a href=\"\">
+                <span class=\"header-menu-en-title\"> $account_en </span>
+                <span class=\"header-menu-ch-title\"> $account </span>
+              </a>
+              </li>
+              <li class=\"header-menu-list\">
+                <a href=\"logout.php\">
+                  <span class=\"header-menu-en-title\"> $login_en </span>
+                  <span class=\"header-menu-ch-title\"> $login </span>
+                </a>
+              </li>
+              ";
+          }
+          ?>
+          <?php
+          if (!$login)
+            echo "<li class=\"header-menu-list\">
+              <a href=\"signup_hotel.php\">
+                <span class=\"header-menu-en-title\">login</span>
+                <span class=\"header-menu-ch-title\">登入</span>
+              </a>
+              </li>
+              <li class=\"header-menu-list\">
+                <a href=\"register.php\">
+                  <span class=\"header-menu-en-title\">regist</span>
+                  <span class=\"header-menu-ch-title\">註冊</span>
+                </a>
+              </li>
+              ";
+
+          ?>
+
+        </ul>
+      </nav>
         </section>
         <!-- Menu END -->
 
@@ -299,15 +329,17 @@
     </section>
     <table style="border-bottom:1px solid #ddd ; padding-bottom:10px ; margin-left: 10% ; margin-right: 10% ; margin-top: 2%;" cellpadding="3" ;border='10' RULES=ROWS>
         <?php
-        if ($word != '' and $cnt1 == 0 or $cnt == 0){
+        if ($cnt == 0 && $cnt1 == 0)
+          echo "查無資料";
+        else if ($word != '' and $cnt1 == 0) {
             echo "
-            <tr>
-            <th></th>
-            <th>搜尋結果</th>
-            <th>星星評分</th>
-            <th align-text:center>地址</th>
-            </tr>
-        ";
+                <tr>
+                <th></th>
+                <th>搜尋結果</th>
+                <th>星星評分</th>
+                <th align-text:center>地址</th>
+                </tr>
+            ";
             for ($i = 0; $i < $cnt; $i++) {
                 echo "
                     <tr >
@@ -320,7 +352,7 @@
                     </tr>
                     ";
             }
-        } else if ($word == '' and $cnt1 != 0){
+        } else if ($word == '' and $cnt1 != 0) {
             echo "
             <tr>
             <th></th>
@@ -341,30 +373,34 @@
                     </tr>
                     ";
             }
-        } else if ($word != '' and $cnt1 != 0){
-            echo "
-            <tr>
-            <th></th>
-            <th>搜尋結果</th>
-            <th>星星評分</th>
-            <th align-text:center>地址</th>
-            </tr>
-        ";
-            for ($i = 0; $i < $cnt2; $i++) {
+        } else if ($word != '' and $cnt1 != 0) {
+            if($cnt2 == 0)
+                echo "查無資料";
+            else {
                 echo "
-                    <tr >
-                        <td bgcolor=#f0efd3>
-                        <img src=\"$img2[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
-                        </td>
-                        <td width=\"40%\" bgcolor=#f0efd3>$name2[$i]</td>
-                        <td width=\"10%\" bgcolor=#f0efd3>$stars2[$i]</td>
-                        <td width=\"50%\" bgcolor=#f0efd3>$location2[$i]</td>
-                    </tr>
-                    ";
+                <tr>
+                <th></th>
+                <th>搜尋結果</th>
+                <th>星星評分</th>
+                <th align-text:center>地址</th>
+                </tr>
+                ";
+                for ($i = 0; $i < $cnt2; $i++) {
+                    echo "
+                        <tr >
+                            <td bgcolor=#f0efd3>
+                            <img src=\"$img2[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
+                            </td>
+                            <td width=\"40%\" bgcolor=#f0efd3>$name2[$i]</td>
+                            <td width=\"10%\" bgcolor=#f0efd3>$stars2[$i]</td>
+                            <td width=\"50%\" bgcolor=#f0efd3>$location2[$i]</td>
+                        </tr>
+                        ";
+                }
             }
         }
         ?>
-        
+
     </table>
     <!-- zenscroll -->
     <script type="text/javascript" src="js/zenscroll.js" async=""></script>

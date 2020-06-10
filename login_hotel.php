@@ -32,7 +32,7 @@
 						$_SESSION['account'] = "歡迎！";
 						$_SESSION['account_en'] = "Welcome！";
 						$_SESSION['login'] = $account[0];
-						$_SESSION['login_en'] = "account";
+						$_SESSION['login_en'] = "登出";
 						header("location: hotel_search.php");
 					}
 					else{
