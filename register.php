@@ -101,18 +101,21 @@
   
   <script>
     function login() {
-      var username = document.getElementById("username");
+      var useraccount = document.getElementById("userAccount");
+      var username = document.getElementById("name");
       var pass = document.getElementById("password");
       var phone = document.getElementById("phone");
-      var ssn = document.getElementById("userSsn");
-      if (username.value == "") {
+      var mail = document.getElementById("userMail");
+      if (useraccount.value == "") {
         alert("請輸入使用者名稱");
       } else if (pass.value == "") {
         alert("請輸入密碼");
       } else if (phone.value == "") {
         alert("請輸入電話");
-      } else if (ssn.value == "") {
-        alert("請輸入身份證字號");
+      } else if (mail.value == "") {
+        alert("請輸入信箱");
+      } else if (username.value == "") {
+        alert("請輸入姓名");
       }
     }
     
@@ -122,12 +125,13 @@
 <body>
   
   <div id="login_frame">
-    <form method="post">
+    <form method="post" action="counter.php">
       <p id="font">註冊</p>
-      <p><label class="label_input ">使用者名稱</label><input type="text" id="username" name="userName" class="text_field " /><span style="color:red;">*必填</span></p>
+      <p><label class="label_input ">使用者名稱</label><input type="text" id="userAccount" name="userAccount" class="text_field " /><span style="color:red;">*必填</span></p>
       <p><label class="label_input ">密碼</label><input type="password" id="password" name="userPassword" class="text_field " /><span style="color:red;">*必填</span></p>
+      <p><label class="label_input ">姓名</label><input type="text" id="name" name="userName" class="text_field " /><span style="color:red;">*必填</span></p>
       <p><label class="label_input ">電話</label><input type="tel" id="phone" name="userPhone" class="text_field " /><span style="color:red;">*必填</span></p>
-      <p><label class="label_input ">身分證字號</label><input type="text" id="userSsn" name="userSsn" class="text_field " /><span style="color:red;">*必填</span></p>
+      <p><label class="label_input ">信箱</label><input type="text" id="userMail" name="userMail" class="text_field " /><span style="color:red;">*必填</span></p>
       <br><br><br><br><br>
       <div id="login_control">
         <input type="submit" id="btn_login" value="提交" onclick="login();"/>
