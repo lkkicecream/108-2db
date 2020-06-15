@@ -358,10 +358,11 @@ $i = 0;
   </section>
   <table style="border-bottom:1px solid #ddd ; padding-bottom:10px ; margin-left: 10% ; margin-right: 10% ; margin-top: 2%;" cellpadding="3" ;border='10' RULES=ROWS>
     <tr>
-      <th></th>
-      <th>建議搜尋</th>
-      <th>星星評分</th>
-      <th align-text:center>地址</th>
+      <th style="background-color:#f0efd3"></th>
+      <th style="background-color:#f0efd3;  text-align:center">建議搜尋</th>
+      <th style="background-color:#f0efd3;  text-align:center">星星評分</th>
+      <th style="background-color:#f0efd3;  text-align:center">地址</th>
+      <th style="background-color:#f0efd3"></th>
     </tr>
     <?php
     $a = Array();
@@ -377,9 +378,9 @@ $i = 0;
                     <td bgcolor=#f0efd3>
                     <img src=\"$img[$b] \" alt=\"\" style=\"height: 200px; width: 200px\">
                     </td>
-                    <td width=\"40%\" bgcolor=#f0efd3>$name[$b]</td>
-                    <td width=\"10%\" bgcolor=#f0efd3>$stars[$b]</td>
-                    <td width=\"50%\" bgcolor=#f0efd3>$location[$b]</td>
+                    <td width=\"40%\" bgcolor=#f0efd3 align=\"center\">$name[$b]</td>
+                    <td width=\"10%\" bgcolor=#f0efd3 align=\"center\">$stars[$b]</td>
+                    <td width=\"50%\" bgcolor=#f0efd3 align=\"center\">$location[$b]</td>
                 </tr>
                 ";
   }
