@@ -43,7 +43,7 @@ $_SESSION['select'] = null;
 
   <style>
     body {
-      background-color: #DEFFFF;
+      background-color: #E0E0E0;
     }
 
     .Icon {
@@ -91,7 +91,7 @@ $_SESSION['select'] = null;
     #carouselbody {
       /* 主要頁面 */
       margin-top: 30px;
-      background-color: #466673;
+      background-color: #8E8E8E;
     }
 
     .carousel .carousel-item {
@@ -389,11 +389,10 @@ $_SESSION['select'] = null;
 
   <table style="border-bottom:1px solid #ddd ; padding-bottom:10px ; margin-left: 10% ; margin-right: 10% ; margin-top: 2%;" cellpadding="3" ;border='10' RULES=ROWS>
     <tr>
-      <th style="background-color:#f0efd3"></th>
-      <th style="background-color:#f0efd3;  text-align:center">建議搜尋</th>
-      <th style="background-color:#f0efd3;  text-align:center">星星評分</th>
-      <th style="background-color:#f0efd3;  text-align:center">地址</th>
-      <th style="background-color:#f0efd3"></th>
+      <th style="background-color:white"></th>
+      <th style="background-color:white;  text-align:center">建議搜尋</th>
+      <th style="background-color:white;  text-align:center">星星評分</th>
+      <th style="background-color:white;  text-align:center">地址</th>
     </tr>
     <?php
     /* $a = Array();
@@ -419,12 +418,12 @@ $_SESSION['select'] = null;
       $b = $Rand[$j];
       echo "
         <tr >
-            <td bgcolor=#f0efd3>
+            <td bgcolor=white>
             <img src=\"$img[$b] \" alt=\"\" style=\"height: 200px; width: 200px\">
             </td>
-            <td width=\"40%\" bgcolor=#f0efd3 align=\"center\">$name[$b]</td>
-            <td width=\"10%\" bgcolor=#f0efd3 align=\"center\">$stars[$b]</td>
-            <td width=\"45%\" bgcolor=#f0efd3 align=\"center\">$location[$b]</td>
+            <td width=\"40%\" bgcolor=white align=\"center\">$name[$b]</td>
+            <td width=\"10%\" bgcolor=white align=\"center\">$stars[$b]</td>
+            <td width=\"45%\" bgcolor=white align=\"center\">$location[$b]</td>
             </td>
             
         </tr>

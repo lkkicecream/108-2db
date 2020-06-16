@@ -132,7 +132,7 @@
       <p><label class="label_input ">姓名</label><input type="text" id="name" name="userName" class="text_field " /><span style="color:red;">*必填</span></p>
       <p><label class="label_input ">電話</label><input type="tel" id="phone" name="userPhone" class="text_field " /><span style="color:red;">*必填</span></p>
       <p><label class="label_input ">信箱</label><input type="text" id="userMail" name="userMail" class="text_field " /><span style="color:red;">*必填</span></p>
-      <br><br><br><br><br>
+      <br><br><br>
       <div id="login_control">
         <input type="submit" id="btn_login" value="提交" onclick="login();"/>
       </div>
