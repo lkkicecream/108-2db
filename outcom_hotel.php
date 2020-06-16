@@ -84,7 +84,7 @@ while ($data = mysqli_fetch_array($cur)) {
 
     <style>
         body {
-            background-color: #DEFFFF;
+            background-color: #E0E0E0;
         }
 
         .Icon {
@@ -132,7 +132,7 @@ while ($data = mysqli_fetch_array($cur)) {
         #carouselbody {
             /* 主要頁面 */
             margin-top: 30px;
-            background-color: #466673;
+            background-color: #8E8E8E;
         }
 
         .carousel .carousel-item {
@@ -414,10 +414,10 @@ while ($data = mysqli_fetch_array($cur)) {
             } else {
                 echo "
                 <tr>
-                <th></th>
-                <th>搜尋結果</th>
-                <th>星星評分</th>
-                <th align-text:center>地址</th>
+                <th style=\"background-color:white\"></th>
+                <th style=\"background-color:white; align-text:center\">搜尋結果</th>
+                <th style=\"background-color:white; align-text:center\">星星評分</th>
+                <th style=\"background-color:white; align-text:center\" >地址</th>
                 </tr>
                 ";
                 for ($i = 0; $i < $cnt2; $i++) {
@@ -426,9 +426,9 @@ while ($data = mysqli_fetch_array($cur)) {
                             <td bgcolor=#f0efd3>
                             <img src=\"$img2[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
                             </td>
-                            <td width=\"40%\" bgcolor=#f0efd3>$name2[$i]</td>
-                            <td width=\"10%\" bgcolor=#f0efd3>$stars2[$i]</td>
-                            <td width=\"50%\" bgcolor=#f0efd3>$location2[$i]</td>
+                            <td width=\"40%\" bgcolor=white align=\"center\">$name2[$i]</td>
+                            <td width=\"10%\" bgcolor=white align=\"center\">$stars2[$i]</td>
+                            <td width=\"50%\" bgcolor=white align=\"center\">$location2[$i]</td>
                         </tr>
                         ";
                 }
