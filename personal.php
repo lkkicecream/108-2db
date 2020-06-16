@@ -267,27 +267,27 @@
       <nav class="header-navigation-menu-box">
         <ul class="header-navigation-menu">
           <li>
-            <a href="/works/">
-              <span class="header-navigation-ch-title">網站案例</span>
-              <span class="header-navigation-en-title">Works</span>
+            <a href="personal.php">
+              <span class="header-navigation-ch-title">Personal</span>
+              <span class="header-navigation-en-title" style="font-size: 20px;">修改個人資料</span>
             </a>
           </li>
           <li>
-            <a href="/#index-contact" onclick="menu_scrollTo(2);return false;">
-              <span class="header-navigation-ch-title">聯絡我們</span>
-              <span class="header-navigation-en-title">Contact</span>
+            <a href="myfavorite.php">
+              <span class="header-navigation-en-title" style="font-size: 25px;">我的最愛</span>
+              <span class="header-navigation-ch-title" style="font-size: 25px;">Myfavorite</span>
             </a>
           </li>
           <li>
-            <a href="/articles/">
-              <span class="header-navigation-ch-title">文章專區</span>
-              <span class="header-navigation-en-title">Article</span>
+            <a href="" onclick="maintain()">
+              <span class="header-navigation-en-title" style="font-size: 25px;">關於我們</span>
+              <span class="header-navigation-ch-title">About</span>
             </a>
           </li>
           <li>
-            <a href="/about/">
-              <span class="header-navigation-ch-title">關於我們</span>
-              <span class="header-navigation-en-title">About</span>
+            <a href="" onclick="maintain()">
+              <span class="header-navigation-en-title" style="font-size: 25px;">文章專區</span>
+              <span class="header-navigation-ch-title">Article</span>
             </a>
           </li>
         </ul>

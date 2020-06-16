@@ -84,7 +84,7 @@ while ($data = mysqli_fetch_array($cur)) {
 
     <style>
         body {
-            background-color: #DEFFFF;
+            background-color: #E0E0E0;
         }
 
         .Icon {
@@ -132,7 +132,7 @@ while ($data = mysqli_fetch_array($cur)) {
         #carouselbody {
             /* 主要頁面 */
             margin-top: 30px;
-            background-color: #466673;
+            background-color: #8E8E8E;
         }
 
         .carousel .carousel-item {
@@ -380,44 +380,44 @@ while ($data = mysqli_fetch_array($cur)) {
         else if ($word != '' and $cnt1 == 0) {
             echo "
                 <tr>
-                <th></th>
-                <th>搜尋結果</th>
-                <th>星星評分</th>
-                <th align-text:center>地址</th>
+                <th style=\"background-color:white\"></th>
+                <th style=\"background-color:white; align-text:center\">搜尋結果</th>
+                <th style=\"background-color:white; align-text:center\">星星評分</th>
+                <th style=\"background-color:white; align-text:center\" >地址</th>
                 </tr>
             ";
             for ($i = 0; $i < $cnt; $i++) {
                 echo "
                     <tr >
-                        <td bgcolor=#f0efd3>
+                        <td bgcolor=white>
                         <img src=\"$img[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
                         </td>
-                        <td width=\"40%\" bgcolor=#f0efd3>$name[$i]</td>
-                        <td width=\"10%\" bgcolor=#f0efd3>$stars[$i]</td>
-                        <td width=\"50%\" bgcolor=#f0efd3>$location[$i]</td>
-                        <td width=\"5%\"  bgcolor=#f0efd3><button value=\"$name[$i]\" onclick=mybtn(this)><img src=\"love.png\" style=\"height: 25px; width: 25px; border=0;\"></button>
+                        <td width=\"40%\" bgcolor=white align=\"center\">$name[$i]</td>
+                        <td width=\"10%\" bgcolor=white align=\"center\">$stars[$i]</td>
+                        <td width=\"50%\" bgcolor=white align=\"center\">$location[$i]</td>
+                        <td width=\"5%\"  bgcolor=white align=\"center\"><button value=\"$name[$i]\" onclick=mybtn(this)><img src=\"love.png\" style=\"height: 25px; width: 25px; border=0;\"></button>
                     </tr>
                     ";
             }
         } else if ($word == '' and $cnt1 != 0) {
             echo "
             <tr>
-            <th></th>
-            <th>搜尋結果</th>
-            <th>星星評分</th>
-            <th align-text:center>地址</th>
+            <th style=\"background-color:white\"></th>
+            <th style=\"background-color:white; align-text:center\">搜尋結果</th>
+            <th style=\"background-color:white; align-text:center\">星星評分</th>
+            <th style=\"background-color:white; align-text:center\" >地址</th>
             </tr>
         ";
             for ($i = 0; $i < $cnt1; $i++) {
                 echo "
                     <tr >
-                        <td bgcolor=#f0efd3>
+                        <td bgcolor=white>
                         <img src=\"$img1[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
                         </td>
-                        <td width=\"40%\" bgcolor=#f0efd3>$name1[$i]</td>
-                        <td width=\"10%\" bgcolor=#f0efd3>$stars1[$i]</td>
-                        <td width=\"50%\" bgcolor=#f0efd3>$location1[$i]</td>
-                        <td width=\"5%\"  bgcolor=#f0efd3><button value=\"$name1[$i]\" onclick=mybtn(this)><img src=\"love.png\" style=\"height: 25px; width: 25px; border=0;\"></button>
+                        <td width=\"40%\" bgcolor=white align=\"center\">$name1[$i]</td>
+                        <td width=\"10%\" bgcolor=white align=\"center\">$stars1[$i]</td>
+                        <td width=\"50%\" bgcolor=white align=\"center\">$location1[$i]</td>
+                        <td width=\"5%\"  bgcolor=white align=\"center\"><button value=\"$name1[$i]\" onclick=mybtn(this)><img src=\"love.png\" style=\"height: 25px; width: 25px; border=0;\"></button>
                     </tr>
                     ";
             }
@@ -427,22 +427,22 @@ while ($data = mysqli_fetch_array($cur)) {
             else {
                 echo "
                 <tr>
-                <th></th>
-                <th>搜尋結果</th>
-                <th>星星評分</th>
-                <th align-text:center>地址</th>
+                <th style=\"background-color:white\"></th>
+                <th style=\"background-color:white; align-text:center\">搜尋結果</th>
+                <th style=\"background-color:white; align-text:center\">星星評分</th>
+                <th style=\"background-color:white; align-text:center\" >地址</th>
                 </tr>
                 ";
                 for ($i = 0; $i < $cnt2; $i++) {
                     echo "
                         <tr >
-                            <td bgcolor=#f0efd3>
+                            <td bgcolor=white align=\"center\">
                             <img src=\"$img2[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
                             </td>
-                            <td width=\"40%\" bgcolor=#f0efd3>$name2[$i]</td>
-                            <td width=\"10%\" bgcolor=#f0efd3>$stars2[$i]</td>
-                            <td width=\"50%\" bgcolor=#f0efd3>$location2[$i]</td>
-                            <td width=\"5%\"  bgcolor=#f0efd3><button value=\"$name2[$i]\" onclick=mybtn(this)><img src=\"love.png\" style=\"height: 25px; width: 25px; border=0;\"></button>
+                            <td width=\"40%\" bgcolor=white align=\"center\">$name2[$i]</td>
+                            <td width=\"10%\" bgcolor=white align=\"center\">$stars2[$i]</td>
+                            <td width=\"50%\" bgcolor=white align=\"center\">$location2[$i]</td>
+                            <td width=\"5%\"  bgcolor=white align=\"center\"><button value=\"$name2[$i]\" onclick=mybtn(this)><img src=\"love.png\" style=\"height: 25px; width: 25px; border=0;\"></button>
                         </tr>
                         ";
                 }
