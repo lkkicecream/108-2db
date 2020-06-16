@@ -169,10 +169,16 @@ while ($data = mysqli_fetch_array($cur)) {
             alert("尚在維護！");
         }
     </script>
-    <script>
+    <script type="text/javascript">
         function mybtn(name) {
-            location.href = "myfavorite.php?value=" + name.value;
-            alert(name.value);
+            var value="<?php if(isset($_SESSION['login']))echo $_SESSION['login'];?>";
+            if(value == "") {
+                alert("尚未登入！");
+                location.href = "signup_sight.php";
+            }
+            else{
+                location.href = "myfavorite.php?value=" + name.value;
+            }
         }
     </script>
 </head>
@@ -389,6 +395,7 @@ while ($data = mysqli_fetch_array($cur)) {
                         <td width=\"40%\" bgcolor=#f0efd3>$name[$i]</td>
                         <td width=\"10%\" bgcolor=#f0efd3>$stars[$i]</td>
                         <td width=\"50%\" bgcolor=#f0efd3>$location[$i]</td>
+                        <td width=\"5%\"  bgcolor=#f0efd3><button value=\"$name[$i]\" onclick=mybtn(this)><img src=\"love.png\" style=\"height: 25px; width: 25px; border=0;\"></button>
                     </tr>
                     ";
             }
@@ -410,6 +417,7 @@ while ($data = mysqli_fetch_array($cur)) {
                         <td width=\"40%\" bgcolor=#f0efd3>$name1[$i]</td>
                         <td width=\"10%\" bgcolor=#f0efd3>$stars1[$i]</td>
                         <td width=\"50%\" bgcolor=#f0efd3>$location1[$i]</td>
+                        <td width=\"5%\"  bgcolor=#f0efd3><button value=\"$name1[$i]\" onclick=mybtn(this)><img src=\"love.png\" style=\"height: 25px; width: 25px; border=0;\"></button>
                     </tr>
                     ";
             }
@@ -434,7 +442,7 @@ while ($data = mysqli_fetch_array($cur)) {
                             <td width=\"40%\" bgcolor=#f0efd3>$name2[$i]</td>
                             <td width=\"10%\" bgcolor=#f0efd3>$stars2[$i]</td>
                             <td width=\"50%\" bgcolor=#f0efd3>$location2[$i]</td>
-                            <td width=\"5%\"  bgcolor=#f0efd3><button value=\"$name[$b]\" onclick=mybtn(this)><img src=\"love.png\" style=\"height: 25px; width: 25px; border=0;\"></button>
+                            <td width=\"5%\"  bgcolor=#f0efd3><button value=\"$name2[$i]\" onclick=mybtn(this)><img src=\"love.png\" style=\"height: 25px; width: 25px; border=0;\"></button>
                         </tr>
                         ";
                 }
