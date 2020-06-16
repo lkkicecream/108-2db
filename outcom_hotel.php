@@ -380,10 +380,10 @@ while ($data = mysqli_fetch_array($cur)) {
         else if ($word != '' and $cnt1 == 0) {
             echo "
                 <tr>
-                <th></th>
-                <th>搜尋結果</th>
-                <th>星星評分</th>
-                <th align-text:center>地址</th>
+                <th style=\"background-color:white\"></th>
+                <th style=\"background-color:white; align-text:center\">搜尋結果</th>
+                <th style=\"background-color:white; align-text:center\">星星評分</th>
+                <th style=\"background-color:white; align-text:center\" >地址</th>
                 </tr>
             ";
             for ($i = 0; $i < $cnt; $i++) {
@@ -402,10 +402,10 @@ while ($data = mysqli_fetch_array($cur)) {
         } else if ($word == '' and $cnt1 != 0) {
             echo "
             <tr>
-            <th></th>
-            <th>搜尋結果</th>
-            <th>星星評分</th>
-            <th align-text:center>地址</th>
+            <th style=\"background-color:white\"></th>
+                <th style=\"background-color:white; align-text:center\">搜尋結果</th>
+                <th style=\"background-color:white; align-text:center\">星星評分</th>
+                <th style=\"background-color:white; align-text:center\" >地址</th>
             </tr>
         ";
             for ($i = 0; $i < $cnt1; $i++) {
