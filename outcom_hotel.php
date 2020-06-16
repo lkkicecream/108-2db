@@ -440,16 +440,10 @@ while ($data = mysqli_fetch_array($cur)) {
                             <td bgcolor=#f0efd3>
                             <img src=\"$img2[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
                             </td>
-<<<<<<< Updated upstream
                             <td width=\"40%\" bgcolor=white align=\"center\">$name2[$i]</td>
                             <td width=\"10%\" bgcolor=white align=\"center\">$stars2[$i]</td>
                             <td width=\"50%\" bgcolor=white align=\"center\">$location2[$i]</td>
-=======
-                            <td width=\"40%\" bgcolor=#f0efd3>$name2[$i]</td>
-                            <td width=\"10%\" bgcolor=#f0efd3>$stars2[$i]</td>
-                            <td width=\"50%\" bgcolor=#f0efd3>$location2[$i]</td>
                             <td width=\"5%\"  bgcolor=#f0efd3><button value=\"$name2[$i]\" onclick=mybtn(this)><img src=\"love.png\" style=\"height: 25px; width: 25px; border=0;\"></button>
->>>>>>> Stashed changes
                         </tr>
                         ";
                 }
