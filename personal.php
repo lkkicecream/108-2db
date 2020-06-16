@@ -22,7 +22,7 @@
 
   <style>
     body {
-      background-color: #DEFFFF;
+      background-color: #E0E0E0;
     }
     #login_frame {
       width: 30em;
