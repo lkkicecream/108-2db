@@ -18,6 +18,8 @@ while ($data = mysqli_fetch_array($cur)) {
   $i++;
 }
 $i = 0;
+$_SESSION['keyword'] = null;
+$_SESSION['select'] = null;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,11 +28,9 @@ $i = 0;
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="https://kit.fontawesome.com/66a625edde.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <title>首頁</title>
 
-  <script src="https://kit.fontawesome.com/66a625edde.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <title>首頁</title>
 
@@ -103,17 +103,41 @@ $i = 0;
       max-width: 800px;
       margin: auto;
     }
+
+    .header-navigation-box {
+      display: -webkit-flex;
+      display: flex;
+      -webkit-align-items: center;
+      align-items: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      flex-direction: column;
+      width: 30%;
+      height: 100vh;
+      position: fixed;
+      margin-left: 1000px;
+      z-index: 100;
+      font-size: 0;
+      top: -110%;
+      background-color: rgba(0, 0, 0, 0.9);
+      transition: all .4s linear;
+    }
   </style>
-  <script language = 'javascript' type = 'text/javascript'>
+  <script language='javascript' type='text/javascript'>
     function search() {
       var search1 = document.getElementById("search1");
       var select1 = document.getElementById("select1");
       if (search1.value == "" && select1.options[select1.selectedIndex].value == 0) {
         alert("請輸入關鍵字");
-        document.myform.action ="sights_search.php";
+        document.myform.action = "sights_search.php";
       }
     }
+
+    function maintain() {
+      alert("尚在維護！");
+    }
   </script>
+
 </head>
 
 <body>
@@ -129,7 +153,7 @@ $i = 0;
 
     <!-- Menu -->
     <section class="header-menu-box">
-    <nav class="header-menu-box-list navbar navbar-expand-lg">
+      <nav class="header-menu-box-list navbar navbar-expand-lg">
         <ul class="header-menu-class navbar-nav mr-auto">
           <li class="header-menu-list">
             <a href="/#index-contact" onclick="menu_scrollTo(2);return false;">
@@ -210,27 +234,27 @@ $i = 0;
       <nav class="header-navigation-menu-box">
         <ul class="header-navigation-menu">
           <li>
-            <a href="/works/">
-              <span class="header-navigation-ch-title">網站案例</span>
-              <span class="header-navigation-en-title">Works</span>
+            <a href="personal.php">
+              <span class="header-navigation-ch-title">Personal</span>
+              <span class="header-navigation-en-title" style="font-size: 20px;">修改個人資料</span>
             </a>
           </li>
           <li>
-            <a href="/#index-contact" onclick="menu_scrollTo(2);return false;">
-              <span class="header-navigation-ch-title">聯絡我們</span>
-              <span class="header-navigation-en-title">Contact</span>
+            <a href="myfavorite.php">
+              <span class="header-navigation-en-title" style="font-size: 25px;">我的最愛</span>
+              <span class="header-navigation-ch-title" style="font-size: 25px;">Myfavorite</span>
             </a>
           </li>
           <li>
-            <a href="/articles/">
-              <span class="header-navigation-ch-title">文章專區</span>
-              <span class="header-navigation-en-title">Article</span>
+            <a href="" onclick="maintain()">
+              <span class="header-navigation-en-title" style="font-size: 25px;">關於我們</span>
+              <span class="header-navigation-ch-title">About</span>
             </a>
           </li>
           <li>
-            <a href="/about/">
-              <span class="header-navigation-ch-title">關於我們</span>
-              <span class="header-navigation-en-title">About</span>
+            <a href="" onclick="maintain()">
+              <span class="header-navigation-en-title" style="font-size: 25px;">文章專區</span>
+              <span class="header-navigation-ch-title">Article</span>
             </a>
           </li>
         </ul>
@@ -260,12 +284,58 @@ $i = 0;
     <!-- 展開視窗 END -->
 
   </header>
+
+  <section id="carouselbody">
+    <div class="bd-example">
+      <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <a href="https://travel.taichung.gov.tw/zh-tw/Event/ActivityDetail/5205/" class="link" title="2019谷關七雄登山趣" target="_blank">
+              <img src="https://travel.taichung.gov.tw/Utility/DisplayImage?id=35168&prefix=original_" class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+              </div>
+            </a>
+          </div>
+          <div class="carousel-item">
+            <a href="http://taichung.csii.com.tw/" class="link" title="臺中市即時景點或鄰近重要道路實況影像" target="_blank">
+              <img src="https://travel.taichung.gov.tw/Utility/DisplayImage?id=34661&amp;prefix=original_" class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+              </div>
+            </a>
+          </div>
+          <div class="carousel-item">
+            <a href="https://tourism.taichung.gov.tw/" class="link" title="108年工作成果" target="_blank">
+              <img src="https://travel.taichung.gov.tw/Utility/DisplayImage?id=32766&amp;prefix=original_" class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+              </div>
+            </a>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon Icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+          <span class="carousel-control-next-icon Icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+    <div id="newstitle">
+    </div>
+  </section>
+
   <div align="center">
-    <table style="margin-top: 4em">
+    <table style="margin-top: 1.5em">
       <tr>
         <form class="form-inline my-2 my-lg-0 form-search" align="center" action="outcom_sight.php" method="POST" name="myform">
           <th>
-            <input class="form-control mr-sm-2 input-search" align="left" type="search" placeholder="Search" aria-label="Search" name="keyword"style="width: 400px" id="search1">
+            <input class="form-control mr-sm-2 input-search" align="left" type="search" placeholder="Search" aria-label="Search" name="keyword" style="width: 400px" id="search1">
           </th>
           <td>
             <div class="text" align="left">
@@ -316,50 +386,7 @@ $i = 0;
 
     </table>
   </div>
-  <section id="carouselbody">
-    <div class="bd-example">
-      <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-          <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <a href="https://travel.taichung.gov.tw/zh-tw/Event/ActivityDetail/5205/" class="link" title="2019谷關七雄登山趣" target="_blank">
-              <img src="https://travel.taichung.gov.tw/Utility/DisplayImage?id=35168&prefix=original_" class="d-block w-100" alt="...">
-              <div class="carousel-caption d-none d-md-block">
-              </div>
-            </a>
-          </div>
-          <div class="carousel-item">
-            <a href="http://taichung.csii.com.tw/" class="link" title="臺中市即時景點或鄰近重要道路實況影像" target="_blank">
-              <img src="https://travel.taichung.gov.tw/Utility/DisplayImage?id=34661&amp;prefix=original_" class="d-block w-100" alt="...">
-              <div class="carousel-caption d-none d-md-block">
-              </div>
-            </a>
-          </div>
-          <div class="carousel-item">
-            <a href="https://tourism.taichung.gov.tw/" class="link" title="108年工作成果" target="_blank">
-              <img src="https://travel.taichung.gov.tw/Utility/DisplayImage?id=32766&amp;prefix=original_" class="d-block w-100" alt="...">
-              <div class="carousel-caption d-none d-md-block">
-              </div>
-            </a>
-          </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon Icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-          <span class="carousel-control-next-icon Icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-    </div>
-    <div id="newstitle">
-    </div>
-  </section>
+
   <table style="border-bottom:1px solid #ddd ; padding-bottom:10px ; margin-left: 10% ; margin-right: 10% ; margin-top: 2%;" cellpadding="3" ;border='10' RULES=ROWS>
     <tr>
       <th style="background-color:#f0efd3"></th>
@@ -377,35 +404,34 @@ $i = 0;
               continue;
             }
             $a[$i]=$b;*/
-            $Rand = Array(); //定義為陣列
+    $Rand = array(); //定義為陣列
 
-    $count = 5 ; //共產生幾筆
+    $count = 5; //共產生幾筆
     for ($i = 1; $i <= $count; $i++) {
-        $randval = mt_rand(0,23); //取得範圍為1~10亂數
-        if (in_array($randval, $Rand)) { //如果已產生過迴圈重跑
-            $i--;
-        }else{
-            $Rand[] = $randval; //若無重復則 將亂數塞入陣列
-        }
+      $randval = mt_rand(0, 23); //取得範圍為1~10亂數
+      if (in_array($randval, $Rand)) { //如果已產生過迴圈重跑
+        $i--;
+      } else {
+        $Rand[] = $randval; //若無重復則 將亂數塞入陣列
+      }
     }
-    for($j = 0; $j < 5; $j ++){
-      $b=$Rand[$j];
+    for ($j = 0; $j < 5; $j++) {
+      $b = $Rand[$j];
       echo "
-                <tr >
-                    <td bgcolor=#f0efd3>
-                    <img src=\"$img[$b] \" alt=\"\" style=\"height: 200px; width: 200px\">
-                    </td>
-                    <td width=\"40%\" bgcolor=#f0efd3 align=\"center\">$name[$b]</td>
-                    <td width=\"10%\" bgcolor=#f0efd3 align=\"center\">$stars[$b]</td>
-                    <td width=\"45%\" bgcolor=#f0efd3 align=\"center\">$location[$b]</td>
-                    <td width=\"5%\"  bgcolor=#f0efd3><button type=\"button\"><img src=\"like.png\" style=\"height: 50px; width: 50px; border=0;\"></button>
-                    </td>
-                    
-                </tr>
-                ";
+        <tr >
+            <td bgcolor=#f0efd3>
+            <img src=\"$img[$b] \" alt=\"\" style=\"height: 200px; width: 200px\">
+            </td>
+            <td width=\"40%\" bgcolor=#f0efd3 align=\"center\">$name[$b]</td>
+            <td width=\"10%\" bgcolor=#f0efd3 align=\"center\">$stars[$b]</td>
+            <td width=\"45%\" bgcolor=#f0efd3 align=\"center\">$location[$b]</td>
+            </td>
+            
+        </tr>
+        ";
     }
-      
-    
+
+
 
     ?>
   </table>

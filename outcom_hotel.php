@@ -3,7 +3,12 @@ require_once("connect.php");
 session_start();
 $con = create_connection();
 //組合查詢字串
-$word = $_POST['keyword'];
+if(isset($_SESSION['keyword']))
+    $word = $_SESSION['keyword'];
+else {
+    $word = $_POST['keyword'];
+    $_SESSION['keyword'] = $word;
+}
 $sql = "SELECT imagehotels.filepic , hotel.hname, hotel.hstars, hotel.hlocation 
             FROM imagehotels, hotel 
             WHERE imagehotels.filename = hotel.hname and (hotel.hname LIKE '%" . $word . "%' or hotel.hlocation LIKE'%" . $word . "%')";
@@ -21,7 +26,12 @@ while ($data = mysqli_fetch_array($cur)) {
 ?>
 <?php  //搜尋地區
 //組合查詢字串
-$word1 = $_POST['select'];
+if(isset($_SESSION['select']))
+    $word1 = $_SESSION['select'];
+else {
+    $word1 = $_POST['select'];
+    $_SESSION['select'] = $word1;
+}
 $sql = "SELECT imagehotels.filepic , hotel.hname, hotel.hstars, hotel.hlocation 
             FROM imagehotels, hotel, harea
             WHERE imagehotels.filename = hotel.hname and hotel.hname = harea.hname and harea.area = '" . $word1 . "'";
@@ -134,7 +144,31 @@ while ($data = mysqli_fetch_array($cur)) {
             max-width: 800px;
             margin: auto;
         }
+
+        .header-navigation-box {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 30%;
+            height: 100vh;
+            position: fixed;
+            margin-left: 1000px;
+            z-index: 100;
+            font-size: 0;
+            top: -110%;
+            background-color: rgba(0, 0, 0, 0.9);
+            transition: all .4s linear;
+        }
     </style>
+    <script>
+        function maintain() {
+            alert("尚在維護！");
+        }
+    </script>
 </head>
 
 <body>
@@ -150,34 +184,34 @@ while ($data = mysqli_fetch_array($cur)) {
 
         <!-- Menu -->
         <section class="header-menu-box">
-        <nav class="header-menu-box-list navbar navbar-expand-lg">
-        <ul class="header-menu-class navbar-nav mr-auto">
-          <li class="header-menu-list">
-            <a href="/#index-contact" onclick="menu_scrollTo(2);return false;">
-              <span class="header-menu-en-title">Contact</span>
-              <span class="header-menu-ch-title">聯絡我們</span>
-            </a>
-          </li>
-          <li class="header-menu-list">
-            <a href="hotel_search.php">
-              <span class="header-menu-en-title">Hotel</span>
-              <span class="header-menu-ch-title">飯店</span>
-            </a>
-          </li>
-          <li class="header-menu-list">
-            <a href="sights_search.php">
-              <span class="header-menu-en-title">Sight</span>
-              <span class="header-menu-ch-title">景點</span>
-            </a>
-          </li>
-          <?php
-          $account_en = $_SESSION['account_en'];
-          $account = $_SESSION['account'];
+            <nav class="header-menu-box-list navbar navbar-expand-lg">
+                <ul class="header-menu-class navbar-nav mr-auto">
+                    <li class="header-menu-list">
+                        <a href="/#index-contact" onclick="menu_scrollTo(2);return false;">
+                            <span class="header-menu-en-title">Contact</span>
+                            <span class="header-menu-ch-title">聯絡我們</span>
+                        </a>
+                    </li>
+                    <li class="header-menu-list">
+                        <a href="hotel_search.php">
+                            <span class="header-menu-en-title">Hotel</span>
+                            <span class="header-menu-ch-title">飯店</span>
+                        </a>
+                    </li>
+                    <li class="header-menu-list">
+                        <a href="sights_search.php">
+                            <span class="header-menu-en-title">Sight</span>
+                            <span class="header-menu-ch-title">景點</span>
+                        </a>
+                    </li>
+                    <?php
+                    $account_en = $_SESSION['account_en'];
+                    $account = $_SESSION['account'];
 
-          $login_en = $_SESSION["login_en"];
-          $login = $_SESSION["login"];
-          if ($login) {
-            echo "
+                    $login_en = $_SESSION["login_en"];
+                    $login = $_SESSION["login"];
+                    if ($login) {
+                        echo "
               <li class=\"header-menu-list\">
               <a href=\"\">
                 <span class=\"header-menu-en-title\"> $account_en </span>
@@ -191,11 +225,11 @@ while ($data = mysqli_fetch_array($cur)) {
                 </a>
               </li>
               ";
-          }
-          ?>
-          <?php
-          if (!$login)
-            echo "<li class=\"header-menu-list\">
+                    }
+                    ?>
+                    <?php
+                    if (!$login)
+                        echo "<li class=\"header-menu-list\">
               <a href=\"signup_hotel.php\">
                 <span class=\"header-menu-en-title\">login</span>
                 <span class=\"header-menu-ch-title\">登入</span>
@@ -209,10 +243,10 @@ while ($data = mysqli_fetch_array($cur)) {
               </li>
               ";
 
-          ?>
+                    ?>
 
-        </ul>
-      </nav>
+                </ul>
+            </nav>
         </section>
         <!-- Menu END -->
 
@@ -231,27 +265,27 @@ while ($data = mysqli_fetch_array($cur)) {
             <nav class="header-navigation-menu-box">
                 <ul class="header-navigation-menu">
                     <li>
-                        <a href="/works/">
-                            <span class="header-navigation-ch-title">網站案例</span>
-                            <span class="header-navigation-en-title">Works</span>
+                        <a href="personal.php">
+                            <span class="header-navigation-ch-title">Personal</span>
+                            <span class="header-navigation-en-title" style="font-size: 20px;">修改個人資料</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/#index-contact" onclick="menu_scrollTo(2);return false;">
-                            <span class="header-navigation-ch-title">聯絡我們</span>
-                            <span class="header-navigation-en-title">Contact</span>
+                        <a href="myfavorite.php">
+                            <span class="header-navigation-en-title" style="font-size: 25px;">我的最愛</span>
+                            <span class="header-navigation-ch-title" style="font-size: 25px;">Myfavorite</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/articles/">
-                            <span class="header-navigation-ch-title">文章專區</span>
-                            <span class="header-navigation-en-title">Article</span>
+                        <a href="outcom_hotel.php" onclick="maintain()">
+                            <span class="header-navigation-en-title" style="font-size: 25px;">關於我們</span>
+                            <span class="header-navigation-ch-title">About</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/about/">
-                            <span class="header-navigation-ch-title">關於我們</span>
-                            <span class="header-navigation-en-title">About</span>
+                        <a href="outcom_hotel.php" onclick="maintain()">
+                            <span class="header-navigation-en-title" style="font-size: 25px;">文章專區</span>
+                            <span class="header-navigation-ch-title">Article</span>
                         </a>
                     </li>
                 </ul>
@@ -330,7 +364,7 @@ while ($data = mysqli_fetch_array($cur)) {
     <table style="border-bottom:1px solid #ddd ; padding-bottom:10px ; margin-left: 10% ; margin-right: 10% ; margin-top: 2%;" cellpadding="3" ;border='10' RULES=ROWS>
         <?php
         if ($cnt == 0 && $cnt1 == 0)
-        echo '<p style="font-size: 32px">查無資料 </p>';
+            echo '<p style="font-size: 32px">查無資料 </p>';
         else if ($word != '' and $cnt1 == 0) {
             echo "
                 <tr>
@@ -374,13 +408,10 @@ while ($data = mysqli_fetch_array($cur)) {
                     ";
             }
         } else if ($word != '' and $cnt1 != 0) {
-            if($cnt2 == 0){
-                
+            if ($cnt2 == 0) {
+
                 echo '<p style="font-size: 32px">查無資料 </p>';
-                
-            }
-           
-            else {
+            } else {
                 echo "
                 <tr>
                 <th></th>
