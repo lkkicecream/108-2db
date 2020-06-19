@@ -9,14 +9,17 @@
 	<body>
 		<div class="main">
 			<?php
-				require_once("connect.php");
 				session_start();
+                require_once("connect.php");
 				$name=$_POST['userName'];
 				$password=$_POST['userPassword'];
 
+                
+				
+				
 //				require_once('登入驗證資料庫連線.php');
 //				$db=new connectDB();
-//				$db->getConn();
+//				$db->getConn();	
                     $con = create_connection();
 					//[email protected] mysqli('25.64.251.181','bacon'','0000000000');
 			
@@ -30,10 +33,11 @@
 						$_SESSION['account_en'] = "Welcome！";
 						$_SESSION['login'] = $account[0];
 						$_SESSION['login_en'] = "登出";
-						header("location: sights_search.php");
+                        $url = $_SESSION['url'];
+                        header("location: $url");
 					}
 					else{
-						$url = "signup_sight.php" ; 
+						$url = "signup.php" ;
 						echo "<script language = 'javascript'  type = 'text/javascript'> alert('請輸入正確的使用者名稱和密碼！');";
 						echo " window.location.href = '$url';";
 						echo "</script>";

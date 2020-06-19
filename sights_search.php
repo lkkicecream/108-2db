@@ -180,6 +180,7 @@ $_SESSION['select'] = null;
           $login_en = $_SESSION["login_en"];
           $login = $_SESSION["login"];
           if ($login) {
+            $_SESSION['url_log'] = "sights_search.php";
             echo "
               <li class=\"header-menu-list\">
               <a href=\"\">
@@ -197,9 +198,10 @@ $_SESSION['select'] = null;
           }
           ?>
           <?php
-          if (!$login)
+          if (!$login) {
+            $_SESSION['url'] = "sights_search.php";
             echo "<li class=\"header-menu-list\">
-              <a href=\"signup_sight.php\">
+              <a href=\"signup.php\">
                 <span class=\"header-menu-en-title\">login</span>
                 <span class=\"header-menu-ch-title\">登入</span>
               </a>
@@ -211,7 +213,7 @@ $_SESSION['select'] = null;
                 </a>
               </li>
               ";
-
+          }
           ?>
 
         </ul>
@@ -240,7 +242,7 @@ $_SESSION['select'] = null;
             </a>
           </li>
           <li>
-            <a href="myfavorite.php">
+            <a href="myfav.php">
               <span class="header-navigation-en-title" style="font-size: 25px;">我的最愛</span>
               <span class="header-navigation-ch-title" style="font-size: 25px;">Myfavorite</span>
             </a>

@@ -1,3 +1,7 @@
+<?php
+session_start();
+$url = $_SESSION['url'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,7 +94,7 @@
       padding: 0 28px;
     }
   </style>
-  
+
   <script>
     function login() {
       var username = document.getElementById("username");
@@ -98,11 +102,18 @@
 
       if (username.value == "") {
         alert("請輸入使用者名稱");
-        document.myform.action ="signup_hotel.php";
+        document.myform.action = "signup_hotel.php";
       } else if (pass.value == "") {
         alert("請輸入密碼");
         document.myform.action = "signup_hotel.php";
+      } else {
+        document.forms["myform"].submit();
       } 
+    }
+  </script>
+  <script language='javascript' type='text/javascript'>
+    function return1() {
+      window.location.href = "<?php echo $url; ?>";
     }
   </script>
 </head>
@@ -110,12 +121,12 @@
 <body>
   <div id="login_frame">
     <p id="image_logo"><img src="旅遊管理企業.png" style="width: 20em; height: 15em"></p>
-    <form method="post" action="login_hotel.php" name="myform">
+    <form method="post" action="login.php" name="myform">
       <p><label class="label_input">使用者名稱</label><input type="text" id="username" name="userName" class="text_field" /></p>
       <p><label class="label_input">密碼</label><input type="password" id="password" name="userPassword" class="text_field" /></p>
       <div id="login_control">
-        <input type="submit" id="btn_login" value="登入" onclick="login();" />
-        <a id="forget_pwd" href="forget_pwd.html">忘記密碼？</a>
+        <input type="button" id="btn_login" value="登入" onclick="login();" />
+        <input type="button" id="btn_login" value="返回" onclick="return1();" />
       </div>
     </form>
   </div>

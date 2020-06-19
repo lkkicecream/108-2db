@@ -3,7 +3,7 @@ require_once("connect.php");
 session_start();
 $con = create_connection();
 //組合查詢字串
-if(isset($_SESSION['keyword']))
+if (isset($_SESSION['keyword']))
     $word = $_SESSION['keyword'];
 else {
     $word = $_POST['keyword'];
@@ -26,7 +26,7 @@ while ($data = mysqli_fetch_array($cur)) {
 ?>
 <?php  //搜尋地區
 //組合查詢字串
-if(isset($_SESSION['select']))
+if (isset($_SESSION['select']))
     $word1 = $_SESSION['select'];
 else {
     $word1 = $_POST['select'];
@@ -171,12 +171,11 @@ while ($data = mysqli_fetch_array($cur)) {
     </script>
     <script type="text/javascript">
         function mybtn(name) {
-            var value="<?php if(isset($_SESSION['login']))echo $_SESSION['login'];?>";
-            if(value == "") {
+            var value = "<?php if (isset($_SESSION['login'])) echo $_SESSION['login']; ?>";
+            if (value == "") {
                 alert("尚未登入！");
                 location.href = "signup_sight.php";
-            }
-            else{
+            } else {
                 location.href = "myfavorite.php?value=" + name.value;
             }
         }
@@ -223,38 +222,40 @@ while ($data = mysqli_fetch_array($cur)) {
                     $login_en = $_SESSION["login_en"];
                     $login = $_SESSION["login"];
                     if ($login) {
+                        $_SESSION['url_log'] = "outcom_hotel.php";
                         echo "
-              <li class=\"header-menu-list\">
-              <a href=\"\">
-                <span class=\"header-menu-en-title\"> $account_en </span>
-                <span class=\"header-menu-ch-title\"> $account </span>
-              </a>
-              </li>
-              <li class=\"header-menu-list\">
-                <a href=\"logout.php\">
-                  <span class=\"header-menu-en-title\"> $login_en </span>
-                  <span class=\"header-menu-ch-title\"> $login </span>
-                </a>
-              </li>
-              ";
+                        <li class=\"header-menu-list\">
+                        <a href=\"\">
+                            <span class=\"header-menu-en-title\"> $account_en </span>
+                            <span class=\"header-menu-ch-title\"> $account </span>
+                        </a>
+                        </li>
+                        <li class=\"header-menu-list\">
+                            <a href=\"logout.php\">
+                            <span class=\"header-menu-en-title\"> $login_en </span>
+                            <span class=\"header-menu-ch-title\"> $login </span>
+                            </a>
+                        </li>
+                        ";
                     }
                     ?>
                     <?php
-                    if (!$login)
+                    if (!$login) {
+                        $_SESSION['url'] = "outcom_hotel.php";
                         echo "<li class=\"header-menu-list\">
-              <a href=\"signup_hotel.php\">
-                <span class=\"header-menu-en-title\">login</span>
-                <span class=\"header-menu-ch-title\">登入</span>
-              </a>
-              </li>
-              <li class=\"header-menu-list\">
-                <a href=\"register.php\">
-                  <span class=\"header-menu-en-title\">regist</span>
-                  <span class=\"header-menu-ch-title\">註冊</span>
-                </a>
-              </li>
-              ";
-
+                            <a href=\"signup.php\">
+                                <span class=\"header-menu-en-title\">login</span>
+                                <span class=\"header-menu-ch-title\">登入</span>
+                            </a>
+                            </li>
+                            <li class=\"header-menu-list\">
+                                <a href=\"register.php\">
+                                <span class=\"header-menu-en-title\">regist</span>
+                                <span class=\"header-menu-ch-title\">註冊</span>
+                                </a>
+                            </li>
+                        ";
+                    }
                     ?>
 
                 </ul>
@@ -283,7 +284,7 @@ while ($data = mysqli_fetch_array($cur)) {
                         </a>
                     </li>
                     <li>
-                        <a href="myfavorite.php">
+                        <a href="myfav.php">
                             <span class="header-navigation-en-title" style="font-size: 25px;">我的最愛</span>
                             <span class="header-navigation-ch-title" style="font-size: 25px;">Myfavorite</span>
                         </a>

@@ -5,7 +5,7 @@
     unset($_SESSION["login_en"]);
     unset($_SESSION["login"]);
     
-    $url = "hotel_search.php" ;
+    $url = $_SESSION['url_log'] ;
     echo "<script language = 'javascript'  type = 'text/javascript'> alert('已登出');";
     echo " window.location.href = '$url';";
     echo "</script>";

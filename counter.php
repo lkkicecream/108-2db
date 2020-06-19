@@ -6,6 +6,7 @@
     $mail = $_POST['userMail'];
 
     require_once("connect.php");
+    session_start();
     $con = create_connection();
     $sql = "SELECT myaccount FROM account where myaccount='" . $account . "'";
     $result = execute_sql($con, "test", $sql);
@@ -36,7 +37,11 @@
         ('" . $account . "','" . $passwd . "','" . $counter ."','" . $name . "','" . $phone . "','" . $mail ."')";
         $result1 = execute_sql($con, "test", $sql1);
         $result2 = execute_sql($con, "test", $sql2);
-        $url = "hotel_search.php";
+        $url = $_SESSION['url'];
+        $_SESSION['account'] = "歡迎！";
+		$_SESSION['account_en'] = "Welcome！";
+		$_SESSION['login'] = $account;
+		$_SESSION['login_en'] = "登出";
         echo "<script language = 'javascript'  type = 'text/javascript'> alert('註冊成功！');";
         echo " window.location.href = '$url';";
         echo "</script>";
