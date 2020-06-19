@@ -4,19 +4,23 @@ session_start();
 $login = $_SESSION['login'];
 $con = create_connection();
 //組合查詢字串
-$sql = "SELECT myfavorite.myaccount , myfavorite.myhname , myfavorite.mysname
+$sql = "SELECT myfavorite.myhname , myfavorite.mysname
             FROM myfavorite , account 
             WHERE myfavorite.myaccount=account.myaccount";
 //
 $cur = execute_sql($con, "test", $sql);
 //取出資料
 $cnt = 0;
+$fl1 = 0;
+$fl2 = 0;
 while ($data = mysqli_fetch_array($cur)) { 
     if($data[1]==NULL) {
-      $hname[$cnt] = $data[2];
+      $hname[$fl1] = $data[2];
+      $fl1++;
     }
     else {
-      $hname[$cnt] = $data[1];
+      $sname[$fl2] = $data[1];
+      $fl2++;
     }
     $cnt++;
 }
@@ -33,24 +37,37 @@ for($i=0; $i<$cnt; $i++) {
     $hstars[$cnt1] = $hlo[1];
     $cnt1++;
   }
-  $sql = "SELECT sights.slocation , sights.sstars 
-          FROM sights , myfavorite
-          WHERE myfavorite.mysname='" . $hname[$i] . "'";
-  $cur = execute_sql($con, "test", $sql);
-  while($slo = mysqli_fetch_array($cur)) {
-    $hlocation[$cnt3] = $slo[0];
-    $hstars[$cnt3] = $slo[1];
-    $cnt3++;
-  }
   $sql = "SELECT imagehotels.filepic 
           FROM hotel , imagehotels
           WHERE imagehotels.filename ='" . $hname[$i] . "'";
   $cur = execute_sql($con, "test", $sql);
-  /*while($pic = mysqli_fetch_array($cur)) {
-    $pic[$cnt2] = "data:image/jpeg;base64," . $pic[0];
+  while($pic = mysqli_fetch_array($cur)) {
+    $hpic[$cnt2] = "data:image/jpeg;base64," . $pic[0];
     $cnt2++;
-  }*/
+  }
 }
+$cnt4 = 0;
+for($i=0; $i<$cnt; $i++) {
+  $sql = "SELECT sights.slocation , sights.sstars 
+          FROM sights , myfavorite
+          WHERE myfavorite.mysname='" . $sname[$i] . "'";
+  $cur = execute_sql($con, "test", $sql);
+  while($slo = mysqli_fetch_array($cur)) {
+    $slocation[$cnt3] = $slo[0];
+    $sstars[$cnt3] = $slo[1];
+    $cnt3++;
+  }
+  $sql = "SELECT imagesights.filepic 
+          FROM sights , imagesights
+          WHERE imagesights.filename ='" . $sname[$i] . "'";
+  $cur = execute_sql($con, "test", $sql);
+  while($pic1 = mysqli_fetch_array($cur)) {
+    $spic[$cnt2] = "data:image/jpeg;base64," . $pic1[0];
+    $cnt4++;
+  }
+}
+
+
 
 
 ?>
@@ -308,15 +325,27 @@ for($i=0; $i<$cnt; $i++) {
         <th style="background-color:white;  text-align:center">地址</th>
       </tr>
       <?php
-        for($i=0; $i<$cnt ; $i++) {
+        for($i=0; $i<$fl1 ; $i++) {
           echo "
             <tr>
             <td bgcolor=white>
-            <img src=\"$pic[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
+            <img src=\"$hpic[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
             </td>
             <td width=\"40%\" bgcolor=white align=\"center\">$hname[$i]</td>
             <td width=\"10%\" bgcolor=white align=\"center\">$hstars[$i]</td>
             <td width=\"50%\" bgcolor=white align=\"center\">$hlocation[$i]</td>
+            </tr>
+          ";
+        }
+        for($i=0; $i<$fl2 ; $i++) {
+          echo "
+            <tr>
+            <td bgcolor=white>
+            <img src=\"$spic[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
+            </td>
+            <td width=\"40%\" bgcolor=white align=\"center\">$sname[$i]</td>
+            <td width=\"10%\" bgcolor=white align=\"center\">$sstars[$i]</td>
+            <td width=\"50%\" bgcolor=white align=\"center\">$slocation[$i]</td>
             </tr>
           ";
         }
