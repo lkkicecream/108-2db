@@ -341,7 +341,6 @@ if ($row = mysqli_fetch_array($result)) {
       <div class="header-mask" id="header-navigation-mask"></div>
     </section>
   </header>
-<<<<<<< Updated upstream
   <div id="page" class="container">
     <div id="header">
 
@@ -349,20 +348,6 @@ if ($row = mysqli_fetch_array($result)) {
         <ul>
           <li class="current_page_item"><a href="#" accesskey="1" style="font-size: 20px;">個人資料</a></li>
         </ul>
-=======
-  <div id="login_frame">
-    <form method="post">
-      <p id="font">個人資料</p>
-      <br><br> 
-      <p><label >使用者名稱 </label><input type="text" id="userAccount" name="userAccount" class="text_field " /><span style="color:red;">*必填</span></p>
-      <p><label >密碼 </label><input type="password" id="password" name="userPassword" class="text_field " /><span style="color:red;">*必填</span></p>
-      <p><label >姓名 </label><input type="text" id="name" name="userName" class="text_field " /><span style="color:red;">*必填</span></p>
-      <p><label >電話 </label><input type="tel" id="phone" name="userPhone" class="text_field " /><span style="color:red;">*必填</span></p>
-      <p><label >信箱 </label><input type="text" id="userMail" name="userMail" class="text_field " /><span style="color:red;">*必填</span></p>
-      <br>
-      <div id="login_control">
-        <input type="submit" id="btn_login" value="修改" onclick="login();"/>
->>>>>>> Stashed changes
       </div>
     </div>
     <div id="main" style="margin-top: 70px;">
