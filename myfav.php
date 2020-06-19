@@ -12,11 +12,17 @@ $cur = execute_sql($con, "test", $sql);
 //取出資料
 $cnt = 0;
 while ($data = mysqli_fetch_array($cur)) { 
-    $hname[$cnt] = $data[0];
-    $sname[$cnt] = $data[1];
+    if($data[1]==NULL) {
+      $hname[$cnt] = $data[2];
+    }
+    else {
+      $hname[$cnt] = $data[1];
+    }
     $cnt++;
 }
 $cnt1 = 0;
+$cnt2 = 0;
+$cnt3 = 0;
 for($i=0; $i<$cnt; $i++) {
   $sql = "SELECT hotel.hlocation , hotel.hstars 
           FROM hotel , myfavorite
@@ -27,9 +33,23 @@ for($i=0; $i<$cnt; $i++) {
     $hstars[$cnt1] = $hlo[1];
     $cnt1++;
   }
-  $sql = "SELECT  
-          FROM hotel , myfavorite
-          WHERE myfavorite.myhname='" . $hname[$i] . "'";
+  $sql = "SELECT sights.slocation , sights.sstars 
+          FROM sights , myfavorite
+          WHERE myfavorite.mysname='" . $hname[$i] . "'";
+  $cur = execute_sql($con, "test", $sql);
+  while($slo = mysqli_fetch_array($cur)) {
+    $hlocation[$cnt3] = $slo[0];
+    $hstars[$cnt3] = $slo[1];
+    $cnt3++;
+  }
+  $sql = "SELECT imagehotels.filepic 
+          FROM hotel , imagehotels
+          WHERE imagehotels.filename ='" . $hname[$i] . "'";
+  $cur = execute_sql($con, "test", $sql);
+  /*while($pic = mysqli_fetch_array($cur)) {
+    $pic[$cnt2] = "data:image/jpeg;base64," . $pic[0];
+    $cnt2++;
+  }*/
 }
 
 
@@ -281,82 +301,26 @@ for($i=0; $i<$cnt; $i++) {
 
   </header>
   <table style="border-bottom:1px solid #ddd ; padding-bottom:10px ; margin-left: 10% ; margin-right: 10% ; margin-top: 2%;" cellpadding="3" ;border='10' RULES=ROWS>
-        <?php
-        if ($cnt == 0 && $cnt1 == 0)
-            echo '<p style="font-size: 32px">查無資料 </p>';
-        else if ($word != '' and $cnt1 == 0) {
-            echo "
-                <tr>
-                <th style=\"background-color:white\"></th>
-                <th style=\"background-color:white; align-text:center\">搜尋結果</th>
-                <th style=\"background-color:white; align-text:center\">星星評分</th>
-                <th style=\"background-color:white; align-text:center\" >地址</th>
-                </tr>
-            ";
-            for ($i = 0; $i < $cnt; $i++) {
-                echo "
-                    <tr >
-                        <td bgcolor=white>
-                        <img src=\"$img[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
-                        </td>
-                        <td width=\"40%\" bgcolor=white align=\"center\">$name[$i]</td>
-                        <td width=\"10%\" bgcolor=white align=\"center\">$stars[$i]</td>
-                        <td width=\"50%\" bgcolor=white align=\"center\">$location[$i]</td>
-                        <td width=\"5%\"  bgcolor=white align=\"center\"><button value=\"$name[$i]\" onclick=mybtn(this)><img src=\"love.png\" style=\"height: 25px; width: 25px; border=0;\"></button>
-                    </tr>
-                    ";
-            }
-        } else if ($word == '' and $cnt1 != 0) {
-            echo "
+      <tr >
+        <th style="background-color:white"></th>
+        <th style="background-color:white;  text-align:center">名稱</th>
+        <th style="background-color:white;  text-align:center">星星評分</th>
+        <th style="background-color:white;  text-align:center">地址</th>
+      </tr>
+      <?php
+        for($i=0; $i<$cnt ; $i++) {
+          echo "
             <tr>
-            <th style=\"background-color:white\"></th>
-                <th style=\"background-color:white; align-text:center\">搜尋結果</th>
-                <th style=\"background-color:white; align-text:center\">星星評分</th>
-                <th style=\"background-color:white; align-text:center\" >地址</th>
+            <td bgcolor=white>
+            <img src=\"$pic[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
+            </td>
+            <td width=\"40%\" bgcolor=white align=\"center\">$hname[$i]</td>
+            <td width=\"10%\" bgcolor=white align=\"center\">$hstars[$i]</td>
+            <td width=\"50%\" bgcolor=white align=\"center\">$hlocation[$i]</td>
             </tr>
-        ";
-            for ($i = 0; $i < $cnt1; $i++) {
-                echo "
-                    <tr >
-                        <td bgcolor=white align=\"center\">
-                        <img src=\"$img1[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
-                        </td>
-                        <td width=\"40%\" bgcolor=white align=\"center\">$name1[$i]</td>
-                        <td width=\"10%\" bgcolor=white align=\"center\">$stars1[$i]</td>
-                        <td width=\"50%\" bgcolor=white align=\"center\">$location1[$i]</td>
-                        <td width=\"5%\"  bgcolor=white align=\"center\"3><button value=\"$name1[$i]\" onclick=mybtn(this)><img src=\"love.png\" style=\"height: 25px; width: 25px; border=0;\"></button>
-                    </tr>
-                    ";
-            }
-        } else if ($word != '' and $cnt1 != 0) {
-            if ($cnt2 == 0) {
-
-                echo '<p style="font-size: 32px">查無資料 </p>';
-            } else {
-                echo "
-                <tr>
-                <th style=\"background-color:white\"></th>
-                <th style=\"background-color:white; align-text:center\">搜尋結果</th>
-                <th style=\"background-color:white; align-text:center\">星星評分</th>
-                <th style=\"background-color:white; align-text:center\" >地址</th>
-                </tr>
-                ";
-                for ($i = 0; $i < $cnt2; $i++) {
-                    echo "
-                        <tr >
-                            <td bgcolor=white>
-                            <img src=\"$img2[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
-                            </td>
-                            <td width=\"40%\" bgcolor=white align=\"center\">$name2[$i]</td>
-                            <td width=\"10%\" bgcolor=white align=\"center\">$stars2[$i]</td>
-                            <td width=\"50%\" bgcolor=white align=\"center\">$location2[$i]</td>
-                            <td width=\"5%\"  bgcolor=white align=\"center\"><button value=\"$name2[$i]\" onclick=mybtn(this)><img src=\"love.png\" style=\"height: 25px; width: 25px; border=0;\"></button>
-                        </tr>
-                        ";
-                }
-            }
+          ";
         }
-        ?>
+      ?>
 
     </table>
   
