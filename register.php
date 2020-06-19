@@ -106,6 +106,14 @@
       var pass = document.getElementById("password");
       var phone = document.getElementById("phone");
       var mail = document.getElementById("userMail");
+      
+      var useraccountpattern = "/^[a-zA-Z0-9_]{4,15}$/";
+      var usernamepattern "^[\u4e00-\u9fa5]{1,7}";
+      var passpattern = "^\W{6,20}$";
+      var phonepattern = "/^((\+?[0-9]{2,4}\-[0-9]{3,4}\-)| ([0-9]{3,4}\-))?( [0-9]{7,8})(\-[0-9]+)?$/";
+      var mailpattern = "^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$";
+
+      
       if (useraccount.value == "") {
         alert("請輸入使用者名稱");
       } else if (pass.value == "") {
@@ -116,10 +124,32 @@
         alert("請輸入信箱");
       } else if (username.value == "") {
         alert("請輸入姓名");
+      } else if(!useraccountpattern.test(useraccount.value)) {
+        alert("使用者名稱不符合格式");
+      } else if(!usernamepattern.test(username.value) ) {
+        alert("姓名不符合格式");
+      } else if(!passpattern.test(pass.value) ) {
+        alert("密碼不符合格式");
+      } else if(!phonepattern.test(phone.value)) {
+        alert("電話不符合格式");
+      } else if(!mailpattern.test(mail.value)) {
+        alert("信箱不符合格式");
       } else {
         document.forms["myform"].submit();
       }
     }
+      /*else if($useraccount.value != "^[a-zA-Z0-9_]{4,15}$"){
+        alert("使用者名稱不符合格式");
+      } else if($pass.value != "^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$" ){
+        alert("密碼不符合格式");
+      } else if($phone.value != "/^((\+?[0-9]{2,4}\-[0-9]{3,4}\-)| ([0-9]{3,4}\-))?( [0-9]{7,8})(\-[0-9]+)?$/" ){
+        alert("電話不符合格式");
+      } else if($username.value != "^[\u4e00-\u9fa5]{1,7}" ){
+        alert("姓名不符合格式");
+      } else if($mail.value != "^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$" ){
+        alert("信箱不符合格式");
+      } */
+
     
   </script>
 </head>
@@ -136,7 +166,7 @@
       <p><label class="label_input ">信箱</label><input type="text" id="userMail" name="userMail" class="text_field " /><span style="color:red;">*必填</span></p>
       <br><br><br>
       <div id="login_control">
-        <input type="" id="btn_login" value="提交" onclick="login()"/>
+        <button id="btn_login" value="提交" onclick="login()" > 提交</button>
       </div>
     </form>
     
