@@ -19,7 +19,7 @@
 				
 //				require_once('登入驗證資料庫連線.php');
 //				$db=new connectDB();
-//				$db->getConn();
+//				$db->getConn();	
                     $con = create_connection();
 					//[email protected] mysqli('25.64.251.181','bacon'','0000000000');
 			

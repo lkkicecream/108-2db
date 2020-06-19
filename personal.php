@@ -45,14 +45,14 @@ if ($row = mysqli_fetch_array($result)) {
 
     #login_frame {
       width: 30em;
-      height: 30em;
+      height: 65%;
       padding: 13px;
       position: absolute;
       left: 55%;
-      top: 45%;
+      top: 40%;
       margin-left: -300px;
       margin-top: -200px;
-      background-color: rgba(105, 105, 105, 0.7);
+      background-color: #8E8E8E;
       border-radius: 10px;
       text-align: center;
     }
