@@ -176,6 +176,9 @@ if ($row = mysqli_fetch_array($result)) {
       w.focus();
       window.location.reload();
     }
+    function maintain() {
+      alert("尚在維護！");
+    }
   </script>
 </head>
 
