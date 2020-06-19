@@ -116,6 +116,8 @@
         alert("請輸入信箱");
       } else if (username.value == "") {
         alert("請輸入姓名");
+      } else {
+        document.forms["myform"].submit();
       }
     }
     
@@ -125,7 +127,7 @@
 <body>
   
   <div id="login_frame">
-    <form method="post" action="counter.php">
+    <form method="post" action="counter.php" id="myform">
       <p id="font">註冊</p>
       <p><label class="label_input ">使用者名稱</label><input type="text" id="userAccount" name="userAccount" class="text_field " /><span style="color:red;">*必填</span></p>
       <p><label class="label_input ">密碼</label><input type="password" id="password" name="userPassword" class="text_field " /><span style="color:red;">*必填</span></p>
@@ -134,7 +136,7 @@
       <p><label class="label_input ">信箱</label><input type="text" id="userMail" name="userMail" class="text_field " /><span style="color:red;">*必填</span></p>
       <br><br><br>
       <div id="login_control">
-        <input type="submit" id="btn_login" value="提交" onclick="login();"/>
+        <input type="" id="btn_login" value="提交" onclick="login()"/>
       </div>
     </form>
     
