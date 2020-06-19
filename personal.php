@@ -1,3 +1,17 @@
+<?php
+require_once("connect.php");
+session_start();
+$con = create_connection();
+$sql = "SELECT myaccount myidnumber, myname, phone, mail FROM account where myaccount='" . $_SESSION["login"] . "'";
+$account1 = $_SESSION["login"];
+$result = execute_sql($con, "test", $sql);
+if ($row = mysqli_fetch_array($result)) {
+  $idnum = $row[0];
+  $myname = $row[1];
+  $phone = $row[2];
+  $mail = $row[3];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +26,10 @@
   <script src="https://kit.fontawesome.com/66a625edde.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <title>首頁</title>
-
+  <!-- 版型 -->
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+  <link href="css/default.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="css/fonts.css" rel="stylesheet" type="text/css" media="all" />
   <!-- 字型 -->
   <link rel="stylesheet" href="css/teko.css">
 
@@ -24,6 +41,8 @@
     body {
       background-color: #E0E0E0;
     }
+    
+
     #login_frame {
       width: 30em;
       height: 30em;
@@ -102,8 +121,8 @@
     }
 
     #font {
-      font-size:2em;
-      font-family:DFKai-sb;
+      font-size: 2em;
+      font-family: DFKai-sb;
     }
 
     #carouselbody {
@@ -141,19 +160,46 @@
       transition: all .4s linear;
     }
   </style>
-  <script language = 'javascript' type = 'text/javascript'>
+  <script language='javascript' type='text/javascript'>
     function search() {
       var search1 = document.getElementById("search1");
       var select1 = document.getElementById("select1");
       if (search1.value == "" && select1.options[select1.selectedIndex].value == 0) {
         alert("請輸入關鍵字");
-        document.myform.action ="sights_search.php";
+        document.myform.action = "sights_search.php";
       }
+    }
+
+    function openwindow() {
+      left = window.innerWidth/3;
+      w = window.open('', '', 'width=700, height=300, top=' + window.outerHeight/3 + ',left='+ left);
+      w.focus();
+      window.location.reload();
     }
   </script>
 </head>
 
-<body>   
+<body>
+  <?php
+  echo "
+    <nav class=\"navbar navbar-expand-lg navbar-light\" style= \"margin-top: 0px; margin-left: 1200px\">
+    <div class=\"collapse navbar-collapse\" id=\"navbarNavDropdown\">
+    <ul class=\"navbar-nav\">
+    <li class=\"nav-item dropdown\">
+                    <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdownMenuLink\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
+                        Dropdown link
+                    </a>
+                    <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdownMenuLink\">
+                        <a class=\"dropdown-item\" href=\"#\">Action</a>
+                        <a class=\"dropdown-item\" href=\"#\">Another action</a>
+                        <a class=\"dropdown-item\" href=\"#\">Something else here</a>
+                    </div>
+                </li>
+                </ul>
+        </div>
+    </nav>
+    ";
+  ?>
   <!-- Header -->
   <header id="header-fixed" class="header-fixed-open">
     <!-- Logo -->
@@ -166,7 +212,7 @@
 
     <!-- Menu -->
     <section class="header-menu-box">
-    <nav class="header-menu-box-list navbar navbar-expand-lg">
+      <nav class="header-menu-box-list navbar navbar-expand-lg">
         <ul class="header-menu-class navbar-nav mr-auto">
           <li class="header-menu-list">
             <a href="/#index-contact" onclick="menu_scrollTo(2);return false;">
@@ -295,33 +341,66 @@
       <div class="header-mask" id="header-navigation-mask"></div>
     </section>
   </header>
-  <div id="login_frame">
-    <form method="post">
-      <p id="font">個人資料</p>
-      <br>
-      <p><label class="label_input">使用者名稱</label><input type="text" id="userAccount" name="userAccount" class="text_field " /><span style="color:red;">*必填</span></p>
-      <p><label class="label_input">密碼</label><input type="password" id="password" name="userPassword" class="text_field " /><span style="color:red;">*必填</span></p>
-      <p><label class="label_input">姓名</label><input type="text" id="name" name="userName" class="text_field " /><span style="color:red;">*必填</span></p>
-      <p><label class="label_input">電話</label><input type="tel" id="phone" name="userPhone" class="text_field " /><span style="color:red;">*必填</span></p>
-      <p><label class="label_input">信箱</label><input type="text" id="userMail" name="userMail" class="text_field " /><span style="color:red;">*必填</span></p>
-      <br>
-      <div id="login_control">
-        <input type="submit" id="btn_login" value="修改" onclick="login();"/>
+  <div id="page" class="container">
+    <div id="header">
+
+      <div id="menu" style="margin-top: 70px;">
+        <ul>
+          <li class="current_page_item"><a href="#" accesskey="1" style="font-size: 20px;">個人資料</a></li>
+        </ul>
       </div>
-    </form>
     </div>
+    <div id="main" style="margin-top: 70px;">
+      <ul class="style1">
+        <li class="first">
+          <p class="date" style="font-size: 20px;">會員ID</p>
+          <br>
+          <p style="font-size: 30px;"><?php echo $idnum ?></p>
+        </li>
+        <li class="first">
+          <p class="date" style="font-size: 20px;">姓名</p>
+          <br>
+          <p style="font-size: 30px;"><?php echo $myname ?><a href=""onclick="openwindow()" style="float: right; font-size: 15px;">修改</a></p>
+        </li>
+        <li class="first">
+          <p class="date" style="font-size: 20px;">帳號</p>
+          <br>
+          <p style="font-size: 30px;"><?php echo $account1 ?><button onclick="openwindow()" style="float: right; font-size: 15px;">修改</button></p>
+        </li>
+        <li class="first">
+          <p class="date" style="font-size: 20px;">密碼</p>
+          <br>
+          <p style="font-size: 30px;"><?php echo "*******" ?><a href="" style="float: right; font-size: 15px;">修改</a></p>
+        </li>
+        <li class="first">
+          <p class="date" style="font-size: 20px;">信箱</p>
+          <br>
+          <p style="font-size: 30px;"><?php echo $mail ?><a href="" style="float: right; font-size: 15px;">修改</a></p>
+        </li>
+        <li class="first">
+          <p class="date" style="font-size: 20px;">電話</p>
+          <br>
+          <p style="font-size: 30px;"><?php echo $phone ?><a href="" style="float: right; font-size: 15px;">修改</a></p>
+        </li>
+      </ul>
+    </div>
+    <div id="copyright">
+      <span>&copy; Untitled. All rights reserved. | Photos by <a href="http://fotogrph.com/">Fotogrph</a></span>
+      <span>Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</span>
+    </div>
+  </div>
 </body>
 <!-- zenscroll -->
 <script type="text/javascript" src="js/zenscroll.js" async=""></script>
-  <!-- zenscroll END -->
+<!-- zenscroll END -->
 
-  <!-- 共用 JS -->
-  <script src="js/shared.js" type="text/javascript" async=""></script>
-  <!-- 共用 JS END -->
-  <!-- Footer END-->
-  <script type="text/javascript" src="js/articles.js" charset="utf-8" async=""></script>
+<!-- 共用 JS -->
+<script src="js/shared.js" type="text/javascript" async=""></script>
+<!-- 共用 JS END -->
+<!-- Footer END-->
+<script type="text/javascript" src="js/articles.js" charset="utf-8" async=""></script>
 
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
