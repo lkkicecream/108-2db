@@ -382,7 +382,7 @@ if ($row = mysqli_fetch_array($result)) {
           <br>
           <p style="font-size: 30px;"><?php echo $phone ?></p>
         </li>
-        <button onclick="javascript:location.href='modify.php'"style="margin-left: 200px; font-size: 20px" >修改個人資料</button>
+        <input type="button" onclick="javascript:location.href='modify.php'"style="margin-left: 200px; font-size: 20px" value="修改個人資料">
       </ul>
     </div>
   </div>
