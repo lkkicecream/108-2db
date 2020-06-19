@@ -2,7 +2,7 @@
 require_once("connect.php");
 session_start();
 $con = create_connection();
-$sql = "SELECT myaccount myidnumber, myname, phone, mail FROM account where myaccount='" . $_SESSION["login"] . "'";
+$sql = "SELECT myidnumber, myname, phone, mail FROM account where myaccount='" . $_SESSION["login"] . "'";
 $account1 = $_SESSION["login"];
 $result = execute_sql($con, "test", $sql);
 if ($row = mysqli_fetch_array($result)) {
@@ -360,33 +360,30 @@ if ($row = mysqli_fetch_array($result)) {
         <li class="first">
           <p class="date" style="font-size: 20px;">姓名</p>
           <br>
-          <p style="font-size: 30px;"><?php echo $myname ?><a href=""onclick="openwindow()" style="float: right; font-size: 15px;">修改</a></p>
+          <p style="font-size: 30px;"><?php echo $myname ?></p>
         </li>
         <li class="first">
           <p class="date" style="font-size: 20px;">帳號</p>
           <br>
-          <p style="font-size: 30px;"><?php echo $account1 ?><button onclick="openwindow()" style="float: right; font-size: 15px;">修改</button></p>
+          <p style="font-size: 30px;"><?php echo $account1 ?></p>
         </li>
         <li class="first">
           <p class="date" style="font-size: 20px;">密碼</p>
           <br>
-          <p style="font-size: 30px;"><?php echo "*******" ?><a href="" style="float: right; font-size: 15px;">修改</a></p>
+          <p style="font-size: 30px;"><?php echo "*******" ?></p>
         </li>
         <li class="first">
           <p class="date" style="font-size: 20px;">信箱</p>
           <br>
-          <p style="font-size: 30px;"><?php echo $mail ?><a href="" style="float: right; font-size: 15px;">修改</a></p>
+          <p style="font-size: 30px;"><?php echo $mail ?></p>
         </li>
         <li class="first">
           <p class="date" style="font-size: 20px;">電話</p>
           <br>
-          <p style="font-size: 30px;"><?php echo $phone ?><a href="" style="float: right; font-size: 15px;">修改</a></p>
+          <p style="font-size: 30px;"><?php echo $phone ?></p>
         </li>
+        <button onclick="javascript:location.href='modify.php'"style="margin-left: 200px; font-size: 20px" >修改個人資料</button>
       </ul>
-    </div>
-    <div id="copyright">
-      <span>&copy; Untitled. All rights reserved. | Photos by <a href="http://fotogrph.com/">Fotogrph</a></span>
-      <span>Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</span>
     </div>
   </div>
 </body>
