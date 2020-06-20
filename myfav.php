@@ -5,8 +5,8 @@ $login = $_SESSION['login'];
 $con = create_connection();
 //組合查詢字串
 $sql = "SELECT myfavorite.myhname , myfavorite.mysname
-            FROM myfavorite , account 
-            WHERE myfavorite.myaccount=account.myaccount";
+            FROM myfavorite 
+            WHERE myfavorite.myaccount='" . $login . "'";
 //
 $cur = execute_sql($con, "test", $sql);
 //取出資料
@@ -14,56 +14,52 @@ $cnt = 0;
 $fl1 = 0;
 $fl2 = 0;
 while ($data = mysqli_fetch_array($cur)) { 
-    if($data[1]==NULL) {
-      $hname[$fl1] = $data[2];
+    if($data[1] == NULL) {
+      $hname[$fl1] = $data[0];
       $fl1++;
     }
     else {
       $sname[$fl2] = $data[1];
       $fl2++;
     }
-    $cnt++;
 }
 $cnt1 = 0;
 $cnt2 = 0;
-$cnt3 = 0;
-for($i=0; $i<$cnt; $i++) {
+for($i=0; $i<$fl1; $i++) {
   $sql = "SELECT hotel.hlocation , hotel.hstars 
           FROM hotel , myfavorite
           WHERE myfavorite.myhname='" . $hname[$i] . "'";
   $cur = execute_sql($con, "test", $sql);
-  while($hlo = mysqli_fetch_array($cur)) {
+  if($hlo = mysqli_fetch_array($cur)) {
     $hlocation[$cnt1] = $hlo[0];
     $hstars[$cnt1] = $hlo[1];
-    $cnt1++;
   }
   $sql = "SELECT imagehotels.filepic 
           FROM hotel , imagehotels
           WHERE imagehotels.filename ='" . $hname[$i] . "'";
   $cur = execute_sql($con, "test", $sql);
-  while($pic = mysqli_fetch_array($cur)) {
-    $hpic[$cnt2] = "data:image/jpeg;base64," . $pic[0];
-    $cnt2++;
+  if($pic = mysqli_fetch_array($cur)) {
+    $hpic[$cnt1] = "data:image/jpeg;base64," . $pic[0];
+    $cnt1++;
   }
 }
-$cnt4 = 0;
-for($i=0; $i<$cnt; $i++) {
+
+for($i=0; $i<$fl2; $i++) {
   $sql = "SELECT sights.slocation , sights.sstars 
           FROM sights , myfavorite
           WHERE myfavorite.mysname='" . $sname[$i] . "'";
   $cur = execute_sql($con, "test", $sql);
-  while($slo = mysqli_fetch_array($cur)) {
-    $slocation[$cnt3] = $slo[0];
-    $sstars[$cnt3] = $slo[1];
-    $cnt3++;
+  if($slo = mysqli_fetch_array($cur)) {
+    $slocation[$cnt2] = $slo[0];
+    $sstars[$cnt2] = $slo[1];
   }
   $sql = "SELECT imagesights.filepic 
           FROM sights , imagesights
           WHERE imagesights.filename ='" . $sname[$i] . "'";
   $cur = execute_sql($con, "test", $sql);
-  while($pic1 = mysqli_fetch_array($cur)) {
+  if($pic1 = mysqli_fetch_array($cur)) {
     $spic[$cnt2] = "data:image/jpeg;base64," . $pic1[0];
-    $cnt4++;
+    $cnt2++;
   }
 }
 

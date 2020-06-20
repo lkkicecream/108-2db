@@ -174,7 +174,7 @@ while ($data = mysqli_fetch_array($cur)) {
             var value = "<?php if (isset($_SESSION['login'])) echo $_SESSION['login']; ?>";
             if (value == "") {
                 alert("尚未登入！");
-                location.href = "signup_sight.php";
+                location.href = "signup.php";
             } else {
                 location.href = "myfavorite.php?value=" + name.value;
             }
