@@ -337,7 +337,9 @@ for($i=0; $i<$fl2; $i++) {
           echo "
             <tr>
             <td bgcolor=white>
-            <img src=\"$hpic[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
+              <a href=\"https://www.google.com.tw/search?en&q=$hname[$i]\" target=\"_blank\">
+                <img src=\"$hpic[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
+              </a>
             </td>
             <td width=\"40%\" bgcolor=white align=\"center\">$hname[$i]</td>
             <td width=\"10%\" bgcolor=white align=\"center\">$hstars[$i]</td>
@@ -350,7 +352,9 @@ for($i=0; $i<$fl2; $i++) {
           echo "
             <tr>
             <td bgcolor=white>
-            <img src=\"$spic[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
+              <a href=\"https://www.google.com.tw/search?en&q=$sname[$i]\" target=\"_blank\">
+                <img src=\"$spic[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
+              </a>
             </td>
             <td width=\"40%\" bgcolor=white align=\"center\">$sname[$i]</td>
             <td width=\"10%\" bgcolor=white align=\"center\">$sstars[$i]</td>
