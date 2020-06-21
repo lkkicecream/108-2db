@@ -1,6 +1,15 @@
 <?php
+  session_start();
+  if(!$_SESSION['login']) {
+    $url = "signup.php" ;
+    echo "<script language = 'javascript'  type = 'text/javascript'> alert('請先登入！');";
+    echo " window.location.href = '$url';";
+    echo "</script>";
+  }
+?>
+
+<?php
 require_once("connect.php");
-session_start();
 $con = create_connection();
 $sql = "SELECT myidnumber, myname, phone, mail FROM account where myaccount='" . $_SESSION["login"] . "'";
 $account1 = $_SESSION["login"];
@@ -11,6 +20,7 @@ if ($row = mysqli_fetch_array($result)) {
   $phone = $row[2];
   $mail = $row[3];
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

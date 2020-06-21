@@ -2,6 +2,12 @@
 require_once("connect.php");
 session_start();
 $login = $_SESSION['login'];
+if(!$login) {
+  $url = "signup.php" ;
+  echo "<script language = 'javascript'  type = 'text/javascript'> alert('請先登入！');";
+  echo " window.location.href = '$url';";
+  echo "</script>";
+}
 $con = create_connection();
 //組合查詢字串
 $sql = "SELECT myfavorite.myhname , myfavorite.mysname
