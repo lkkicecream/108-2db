@@ -172,7 +172,12 @@ for($i=0; $i<$fl2; $i++) {
       transition: all .4s linear;
     }
   </style>
-  
+  <script type="text/javascript">
+    function mybtn(name) {
+        <?php $_SESSION['delete'] = 1; if($login)$_SESSION['url'] = "myfav.php"; ?>;
+        location.href = "myfavorite.php?value=" + name.value;
+    }
+    </script>
 </head>
 
 <body>
@@ -275,7 +280,7 @@ for($i=0; $i<$fl2; $i++) {
             </a>
           </li>
           <li>
-            <a href="myfavorite.php">
+            <a href="myfav.php">
               <span class="header-navigation-en-title" style="font-size: 25px;">我的最愛</span>
               <span class="header-navigation-ch-title" style="font-size: 25px;">Myfavorite</span>
             </a>
@@ -326,6 +331,7 @@ for($i=0; $i<$fl2; $i++) {
         <th style="background-color:white;  text-align:center">星星評分</th>
         <th style="background-color:white;  text-align:center">地址</th>
       </tr>
+      
       <?php
         for($i=0; $i<$fl1 ; $i++) {
           echo "
@@ -336,6 +342,7 @@ for($i=0; $i<$fl2; $i++) {
             <td width=\"40%\" bgcolor=white align=\"center\">$hname[$i]</td>
             <td width=\"10%\" bgcolor=white align=\"center\">$hstars[$i]</td>
             <td width=\"50%\" bgcolor=white align=\"center\">$hlocation[$i]</td>
+            <td width=\"50%\" bgcolor=white align=\"center\"><button value=\"$hname[$i]\" onclick=mybtn(this) style=\"height: 35px; width: 50px;\"><p>刪除</P></button></td>
             </tr>
           ";
         }
@@ -348,6 +355,7 @@ for($i=0; $i<$fl2; $i++) {
             <td width=\"40%\" bgcolor=white align=\"center\">$sname[$i]</td>
             <td width=\"10%\" bgcolor=white align=\"center\">$sstars[$i]</td>
             <td width=\"50%\" bgcolor=white align=\"center\">$slocation[$i]</td>
+            <td width=\"50%\" bgcolor=white align=\"center\"><button value=\"$sname[$i]\" onclick=mybtn(this) style=\"height: 35px; width: 50px;\"><p>刪除</P></button></td>
             </tr>
           ";
         }

@@ -137,7 +137,18 @@ $_SESSION['select'] = null;
       alert("尚在維護！");
     }
   </script>
-
+  <script type="text/javascript">
+    function mybtn(name) {
+        var value = "<?php if (isset($_SESSION['login'])) echo $_SESSION['login']; ?>";
+        if (value == "") {
+            alert("尚未登入！");
+            location.href = "signup.php";
+        } else {
+            <?php $_SESSION['delete'] = 0; ?>;
+            location.href = "myfavorite.php?value=" + name.value;
+        }
+    }
+    </script>
 </head>
 
 <body>
@@ -180,7 +191,7 @@ $_SESSION['select'] = null;
           $login_en = $_SESSION["login_en"];
           $login = $_SESSION["login"];
           if ($login) {
-            $_SESSION['url_log'] = "sights_search.php";
+            $_SESSION['url'] = "sights_search.php";
             echo "
               <li class=\"header-menu-list\">
               <a href=\"\">
@@ -426,6 +437,7 @@ $_SESSION['select'] = null;
             <td width=\"40%\" bgcolor=white align=\"center\">$name[$b]</td>
             <td width=\"10%\" bgcolor=white align=\"center\">$stars[$b]</td>
             <td width=\"45%\" bgcolor=white align=\"center\">$location[$b]</td>
+            <td width=\"5%\"  bgcolor=white align=\"center\"><button value=\"$name[$b]\" onclick=mybtn(this)><img src=\"love.png\" style=\"height: 25px; width: 25px; border=0;\"></button>
             </td>
             
         </tr>

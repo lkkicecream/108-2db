@@ -312,7 +312,7 @@ if ($row = mysqli_fetch_array($result)) {
             </a>
           </li>
           <li>
-            <a href="myfavorite.php">
+            <a href="myfav.php">
               <span class="header-navigation-en-title" style="font-size: 25px;">我的最愛</span>
               <span class="header-navigation-ch-title" style="font-size: 25px;">Myfavorite</span>
             </a>

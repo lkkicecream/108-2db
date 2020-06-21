@@ -177,6 +177,7 @@ while ($data = mysqli_fetch_array($cur)) {
                 location.href = "signup.php";
             }
             else{
+                <?php $_SESSION['delete'] = 0; ?>;
                 location.href = "myfavorite.php?value=" + name.value;
             }
         }
@@ -223,7 +224,7 @@ while ($data = mysqli_fetch_array($cur)) {
                     $login_en = $_SESSION["login_en"];
                     $login = $_SESSION["login"];
                     if ($login) {
-                        $_SESSION['url_log'] = "outcom_sight.php";
+                        $_SESSION['url'] = "outcom_sight.php";
                         echo "
                             <li class=\"header-menu-list\">
                             <a href=\"\">
