@@ -393,7 +393,9 @@ while ($data = mysqli_fetch_array($cur)) {
                 echo "
                     <tr >
                         <td bgcolor=white>
-                        <img src=\"$img[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
+                            <a href=\"https://www.google.com.tw/search?en&q=$name[$i]\" target=\"_blank\">
+                                <img src=\"$img[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
+                            </a>
                         </td>
                         <td width=\"40%\" bgcolor=white align=\"center\">$name[$i]</td>
                         <td width=\"10%\" bgcolor=white align=\"center\">$stars[$i]</td>
@@ -415,7 +417,9 @@ while ($data = mysqli_fetch_array($cur)) {
                 echo "
                     <tr >
                         <td bgcolor=white>
-                        <img src=\"$img1[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
+                            <a href=\"https://www.google.com.tw/search?en&q=$name1[$i]\" target=\"_blank\">
+                                <img src=\"$img1[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
+                            </a>
                         </td>
                         <td width=\"40%\" bgcolor=white align=\"center\">$name1[$i]</td>
                         <td width=\"10%\" bgcolor=white align=\"center\">$stars1[$i]</td>
@@ -440,7 +444,9 @@ while ($data = mysqli_fetch_array($cur)) {
                     echo "
                         <tr >
                             <td bgcolor=white align=\"center\">
-                            <img src=\"$img2[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
+                                <a href=\"https://www.google.com.tw/search?en&q=$name2[$i]\" target=\"_blank\">
+                                    <img src=\"$img2[$i] \" alt=\"\" style=\"height: 200px; width: 200px\">
+                                </a>
                             </td>
                             <td width=\"40%\" bgcolor=white align=\"center\">$name2[$i]</td>
                             <td width=\"10%\" bgcolor=white align=\"center\">$stars2[$i]</td>

@@ -431,14 +431,16 @@ $_SESSION['select'] = null;
       $b = $Rand[$j];
       echo "
         <tr >
-            <td bgcolor=white>
-            <img src=\"$img[$b] \" alt=\"\" style=\"height: 200px; width: 200px\">
-            </td>
-            <td width=\"40%\" bgcolor=white align=\"center\">$name[$b]</td>
-            <td width=\"10%\" bgcolor=white align=\"center\">$stars[$b]</td>
-            <td width=\"45%\" bgcolor=white align=\"center\">$location[$b]</td>
-            <td width=\"5%\"  bgcolor=white align=\"center\"><button value=\"$name[$b]\" onclick=mybtn(this)><img src=\"love.png\" style=\"height: 25px; width: 25px; border=0;\"></button>
-            </td>
+          <td bgcolor=white>
+            <a href=\"https://www.google.com.tw/search?en&q=$name[$b]\" target=\"_blank\">
+              <img src=\"$img[$b] \" alt=\"\" style=\"height: 200px; width: 200px\">
+            </a>
+          </td>
+          <td width=\"40%\" bgcolor=white align=\"center\">$name[$b]</td>
+          <td width=\"10%\" bgcolor=white align=\"center\">$stars[$b]</td>
+          <td width=\"45%\" bgcolor=white align=\"center\">$location[$b]</td>
+          <td width=\"5%\"  bgcolor=white align=\"center\"><button value=\"$name[$b]\" onclick=mybtn(this)><img src=\"love.png\" style=\"height: 25px; width: 25px; border=0;\"></button>
+          </td>
             
         </tr>
         ";
