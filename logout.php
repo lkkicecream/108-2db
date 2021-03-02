@@ -4,8 +4,9 @@
     unset($_SESSION['account']);
     unset($_SESSION["login_en"]);
     unset($_SESSION["login"]);
-    
-    $url = $_SESSION['url_log'] ;
+    if($_SESSION['url'] == "myfav.php" || $_SESSION['url'] == "personal.php")
+        $_SESSION['url'] = "hotel_search.php";
+    $url = $_SESSION['url'] ;
     echo "<script language = 'javascript'  type = 'text/javascript'> alert('已登出');";
     echo " window.location.href = '$url';";
     echo "</script>";
